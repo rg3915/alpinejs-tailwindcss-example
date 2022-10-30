@@ -76,14 +76,12 @@ npm i esbuild
 Edite `package.json`
 
 ```json
-...
 "scripts": {
   "build-css": "npx tailwindcss -i src/tailwind.css -o public/tailwind.css --watch",
   "build-js": "npx esbuild src/alpine.js --outfile=public/alpine.js --bundle --watch",
   "build": "npx tailwindcss -i src/tailwind.css -o public/tailwind.css; npx esbuild src/alpine.js --outfile=public/alpine.js --bundle; npx prettier --write public/",
   "lint": "npx prettier --write public/"
 }
-...
 ```
 
 ### Rodando a aplicação com [http-server](https://www.npmjs.com/package/http-server)
