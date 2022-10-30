@@ -49,3 +49,23 @@ const getTodos = () => ({
       });
   },
 });
+
+const getProducts = () => ({
+  url: "http://localhost:3000/products",
+  products: [],
+  product: {},
+  price: "",
+  init() {
+    fetch(this.url)
+      .then((response) => response.json())
+      .then((data) => (this.products = data));
+  },
+  getProduct() {
+    // return price
+    this.products.find((item) => {
+      if (this.product == item.id) {
+        this.price = item.price;
+      }
+    });
+  },
+});
