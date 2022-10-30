@@ -102,3 +102,5 @@ dist
 
 # TernJS port file
 .tern-port
+public/alpine.js
+public/tailwind.css

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+    />
+    <!-- favicon -->
+    <link rel="shortcut icon" href="https://alpinejs.dev/favicon.png" />
+    <!-- -->
+    <title>Alpine.js and TailwindCSS</title>
+    <!-- Font-awesome -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <!-- tailwind.css -->
+    <link rel="stylesheet" href="./tailwind.css" />
+    <!-- alpine.js -->
+    <script src="./alpine.js" defer></script>
+    <!-- main.js -->
+    <script src="./main.js"></script>
+  </head>
+
+  <body>
+    <div class="container flex mx-auto" x-data="{ open: false }">
+      <button
+        class="py-2 px-4 my-4 h-10 rounded-lg text-white font-bold hover:bg-indigo-400 bg-indigo-500"
+        @click="open=!open"
+      >
+        Expand
+      </button>
+      <span x-show="open"> Content... </span>
+    </div>
+    <div
+      class="container flex mx-auto"
+      x-data="getTodos()"
+      x-init="$watch('task', value => {if (value.length > 0) required=false})"
+    >
+      <div>
+        <form @submit.prevent="saveData">
+          <div class="flex items-start justify-start">
+            <div>
+              <div>
+                <input
+                  class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-1 leading-tight focus:outline-none focus:shadow-outline"
+                  :class="required ? 'is-danger' : ''"
+                  type="text"
+                  maxlength="20"
+                  placeholder="Task"
+                  x-model="task"
+                  autofocus
+                />
+                <p class="text-red-500 text-xs" x-show="required">
+                  Please type the task.
+                </p>
+              </div>
+              <p
+                class="text-right"
+                x-show="task.length"
+                x-text="task.length"
+              ></p>
+            </div>
+            <p class="inline-flex items-center ml-2">
+              <button
+                class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded"
+                type="submit"
+              >
+                OK
+              </button>
+            </p>
+          </div>
+        </form>
+        <table class="table-auto">
+          <tbody>
+            <template x-for="todo in todos" :key="todo.id">
+              <tr class="border-b-2 border-red-400">
+                <td
+                  :class="todo.done ? 'is-done' : ''"
+                  x-text="todo.task"
+                  @click="toggleDone(todo.id, todo.done ? false : true)"
+                ></td>
+                <td>
+                  <i
+                    class="fa fa-times text-red-500 ml-3"
+                    @click="deleteTask(todo.id)"
+                  ></i>
+                </td>
+              </tr>
+            </template>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>

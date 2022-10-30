@@ -1,0 +1,32 @@
+{
+  "name": "alpinejs-tailwindcss-example",
+  "version": "1.0.0",
+  "description": "Alpine.js TailwindCSS Example",
+  "main": "index.js",
+  "scripts": {
+    "build-css": "npx tailwindcss -i src/tailwind.css -o public/tailwind.css --watch",
+    "build-js": "npx esbuild src/alpine.js --outfile=public/alpine.js --bundle --watch",
+    "build": "npx tailwindcss -i src/tailwind.css -o public/tailwind.css; npx esbuild src/alpine.js --outfile=public/alpine.js --bundle; npx prettier --write public/",
+    "lint": "npx prettier --write public/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rg3915/alpinejs-tailwindcss-example.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rg3915/alpinejs-tailwindcss-example/issues"
+  },
+  "homepage": "https://github.com/rg3915/alpinejs-tailwindcss-example#readme",
+  "devDependencies": {
+    "autoprefixer": "^10.4.13",
+    "postcss": "^8.4.18",
+    "prettier": "2.7.1",
+    "tailwindcss": "^3.2.1"
+  },
+  "dependencies": {
+    "alpinejs": "^3.10.5",
+    "esbuild": "^0.15.12"
+  }
+}
