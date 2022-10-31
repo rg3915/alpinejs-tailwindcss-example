@@ -32,19 +32,48 @@
   </head>
 
   <body class="font-poppins">
-    <div>
-      <div class="container max-w-5xl mx-auto px-4 py-6">
-        <div x-data="{ open: false }">
-          <button
-            class="py-2 px-4 my-4 h-10 rounded-lg text-white font-bold hover:bg-indigo-400 bg-indigo-500"
-            @click="open=!open"
-          >
-            Expand
-          </button>
-          <span x-show="open"> Content... </span>
+    <div class="container max-w-5xl mx-auto px-4 py-6">
+      <div x-data="{ open: false }">
+        <button
+          class="py-2 px-4 my-4 h-10 rounded-lg text-white font-bold hover:bg-indigo-400 bg-indigo-500"
+          @click="open=!open"
+        >
+          Expand
+        </button>
+        <span x-show="open"> Content... </span>
+
+        <div
+          x-show="open"
+          class="hidden sm:block max-w-5xl mx-auto"
+          aria-hidden="true"
+        >
+          <div class="py-5">
+            <div class="border-t border-gray-200"></div>
+          </div>
+        </div>
+
+        <div x-show="open">
+          <div class="container max-w-5xl mx-auto px-4 py-6">
+            <div class="prose">
+              <h1>Garlic bread with cheese: What the science tells us ...</h1>
+              <h2>The quick brown fox jumps over the lazy dog.</h2>
+              <p>
+                For years parents have espoused the health benefits of eating
+                garlic bread with cheese to their children, with the food
+                earning such an iconic status in our culture that kids will
+                often dress up as warm, cheesy loaf for Halloween.
+              </p>
+              <p>
+                But a recent study shows that the celebrated appetizer may be
+                linked to a series of rabies cases springing up around the
+                country.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+
     <div>
       <div class="container max-w-5xl mx-auto px-4 py-6">
         <!-- Todos -->
@@ -129,7 +158,7 @@
               <label class="block mb-1" for="id_product">Produto</label>
               <select
                 id="id_product"
-                class="w-full h-10 px-3 text-base placeholder-gray-400 border rounded-lg focus:shadow-outline"
+                class="input"
                 type="text"
                 @change="getProduct"
                 x-model="product"
@@ -144,7 +173,7 @@
               <label class="block mb-1" for="id_quantity">Quantidade</label>
               <input
                 id="id_quantity"
-                class="w-full h-10 px-3 text-base placeholder-gray-400 border rounded-lg focus:shadow-outline"
+                class="input"
                 type="number"
                 min="0"
                 placeholder="Quantidade"
@@ -154,7 +183,7 @@
               <label class="block mb-1" for="id_price">Preço</label>
               <input
                 id="id_price"
-                class="w-full h-10 px-3 text-base placeholder-gray-400 border rounded-lg focus:shadow-outline"
+                class="input"
                 type="number"
                 min="0"
                 step="0.01"
@@ -282,31 +311,6 @@
               </li>
             </template>
           </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="hidden sm:block max-w-5xl mx-auto" aria-hidden="true">
-      <div class="py-5">
-        <div class="border-t border-gray-200"></div>
-      </div>
-    </div>
-
-    <div>
-      <div class="container max-w-5xl mx-auto px-4 py-6">
-        <div class="prose">
-          <h1>Garlic bread with cheese: What the science tells us ...</h1>
-          <h2>The quick brown fox jumps over the lazy dog.</h2>
-          <p>
-            For years parents have espoused the health benefits of eating garlic
-            bread with cheese to their children, with the food earning such an
-            iconic status in our culture that kids will often dress up as warm,
-            cheesy loaf for Halloween.
-          </p>
-          <p>
-            But a recent study shows that the celebrated appetizer may be linked
-            to a series of rabies cases springing up around the country.
-          </p>
         </div>
       </div>
     </div>

@@ -77,6 +77,25 @@ module.exports = {
 }
 ```
 
+### Instalando forms
+
+```
+npm i -D @tailwindcss/forms
+```
+
+```js
+// tailwind.config.js
+module.exports = {
+  theme: {
+    // ...
+  },
+  plugins: [
+    require('@tailwindcss/forms'),
+    // ...
+  ],
+}
+```
+
 ### Instalando o [Alpine.js](https://alpinejs.dev/)
 
 ```
