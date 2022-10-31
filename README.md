@@ -96,6 +96,28 @@ module.exports = {
 }
 ```
 
+### Instalando aspect-ratio
+
+```
+npm i -D @tailwindcss/aspect-ratio
+```
+
+```js
+// tailwind.config.js
+module.exports = {
+  theme: {
+    // ...
+  },
+  corePlugins: {
+    aspectRatio: false,
+  },
+  plugins: [
+    require('@tailwindcss/aspect-ratio'),
+    // ...
+  ],
+}
+```
+
 ### Instalando o [Alpine.js](https://alpinejs.dev/)
 
 ```
