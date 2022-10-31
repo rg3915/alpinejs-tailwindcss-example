@@ -31,147 +31,173 @@
     />
   </head>
 
-  <body>
-    <div class="container flex mx-auto" x-data="{ open: false }">
-      <button
-        class="py-2 px-4 my-4 h-10 rounded-lg text-white font-bold hover:bg-indigo-400 bg-indigo-500"
-        @click="open=!open"
-      >
-        Expand
-      </button>
-      <span x-show="open"> Content... </span>
+  <body class="font-poppins">
+    <div>
+      <div class="container max-w-5xl mx-auto px-4 py-6">
+        <div x-data="{ open: false }">
+          <button
+            class="py-2 px-4 my-4 h-10 rounded-lg text-white font-bold hover:bg-indigo-400 bg-indigo-500"
+            @click="open=!open"
+          >
+            Expand
+          </button>
+          <span x-show="open"> Content... </span>
+        </div>
+      </div>
     </div>
-    <!-- Todos -->
-    <div
-      class="container flex mx-auto"
-      x-data="getTodos()"
-      x-init="$watch('task', value => {if (value.length > 0) required=false})"
-    >
-      <div>
-        <form @submit.prevent="saveData">
-          <div class="flex items-start justify-start">
-            <div>
-              <div>
-                <input
-                  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-1 leading-tight focus:outline-none focus:shadow-outline"
-                  :class="required ? 'text-red-500 border-red-500' : ''"
-                  type="text"
-                  maxlength="20"
-                  placeholder="Task"
-                  x-model="task"
-                  autofocus
-                />
-                <p class="text-red-500 text-xs" x-show="required">
-                  Please type the task.
+    <div>
+      <div class="container max-w-5xl mx-auto px-4 py-6">
+        <!-- Todos -->
+        <div
+          class="container flex mx-auto"
+          x-data="getTodos()"
+          x-init="$watch('task', value => {if (value.length > 0) required=false})"
+        >
+          <div>
+            <form @submit.prevent="saveData">
+              <div class="flex items-start justify-start">
+                <div>
+                  <div>
+                    <input
+                      class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-1 leading-tight focus:outline-none focus:shadow-outline"
+                      :class="required ? 'text-red-500 border-red-500' : ''"
+                      type="text"
+                      maxlength="20"
+                      placeholder="Task"
+                      x-model="task"
+                      autofocus
+                    />
+                    <p class="text-red-500 text-xs" x-show="required">
+                      Please type the task.
+                    </p>
+                  </div>
+                  <p
+                    class="text-right"
+                    x-show="task.length"
+                    x-text="task.length"
+                  ></p>
+                </div>
+                <p class="inline-flex items-center ml-2">
+                  <button
+                    class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded"
+                    type="submit"
+                  >
+                    OK
+                  </button>
                 </p>
               </div>
-              <p
-                class="text-right"
-                x-show="task.length"
-                x-text="task.length"
-              ></p>
+            </form>
+            <table class="table-auto">
+              <tbody>
+                <template x-for="todo in todos" :key="todo.id">
+                  <tr class="border-b-2 border-red-400">
+                    <td
+                      :class="todo.done ? 'is-done' : ''"
+                      x-text="todo.task"
+                      @click="toggleDone(todo.id, todo.done ? false : true)"
+                    ></td>
+                    <td>
+                      <i
+                        class="fa fa-times text-red-500 ml-3"
+                        @click="deleteTask(todo.id)"
+                      ></i>
+                    </td>
+                  </tr>
+                </template>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hidden sm:block max-w-5xl mx-auto" aria-hidden="true">
+      <div class="py-5">
+        <div class="border-t border-gray-200"></div>
+      </div>
+    </div>
+
+    <div>
+      <div class="container max-w-5xl mx-auto px-4 py-6">
+        <!-- Inline -->
+        <form class="space-y-4 text-gray-700">
+          <div
+            class="container flex flex-wrap items-end mx-auto space-y-4 md:space-y-0 font-sans antialiased"
+            x-data="getProducts()"
+          >
+            <div class="w-full px-2 md:w-1/4">
+              <label class="block mb-1" for="id_product">Produto</label>
+              <select
+                id="id_product"
+                class="w-full h-10 px-3 text-base placeholder-gray-400 border rounded-lg focus:shadow-outline"
+                type="text"
+                @change="getProduct"
+                x-model="product"
+              >
+                <option value="">-------</option>
+                <template x-for="product in products" :key="product.id">
+                  <option :value="product.id" x-text="product.title"></option>
+                </template>
+              </select>
             </div>
-            <p class="inline-flex items-center ml-2">
+            <div class="w-full px-2 md:w-1/4">
+              <label class="block mb-1" for="id_quantity">Quantidade</label>
+              <input
+                id="id_quantity"
+                class="w-full h-10 px-3 text-base placeholder-gray-400 border rounded-lg focus:shadow-outline"
+                type="number"
+                min="0"
+                placeholder="Quantidade"
+              />
+            </div>
+            <div class="w-full px-2 md:w-1/4">
+              <label class="block mb-1" for="id_price">Preço</label>
+              <input
+                id="id_price"
+                class="w-full h-10 px-3 text-base placeholder-gray-400 border rounded-lg focus:shadow-outline"
+                type="number"
+                min="0"
+                step="0.01"
+                placeholder="Preço"
+                x-model="price"
+              />
+            </div>
+            <div class="w-full px-2 md:w-1/4">
               <button
                 class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded"
                 type="submit"
               >
-                OK
+                Adicionar
               </button>
-            </p>
+            </div>
           </div>
         </form>
-        <table class="table-auto">
-          <tbody>
-            <template x-for="todo in todos" :key="todo.id">
-              <tr class="border-b-2 border-red-400">
-                <td
-                  :class="todo.done ? 'is-done' : ''"
-                  x-text="todo.task"
-                  @click="toggleDone(todo.id, todo.done ? false : true)"
-                ></td>
-                <td>
-                  <i
-                    class="fa fa-times text-red-500 ml-3"
-                    @click="deleteTask(todo.id)"
-                  ></i>
-                </td>
-              </tr>
-            </template>
-          </tbody>
-        </table>
       </div>
     </div>
-    <br />
-    <!-- Inline -->
-    <form class="space-y-4 text-gray-700">
-      <div
-        class="container flex flex-wrap items-end mx-auto space-y-4 md:space-y-0 font-sans antialiased"
-        x-data="getProducts()"
-      >
-        <div class="w-full px-2 md:w-1/4">
-          <label class="block mb-1" for="id_product">Produto</label>
-          <select
-            id="id_product"
-            class="w-full h-10 px-3 text-base placeholder-gray-400 border rounded-lg focus:shadow-outline"
-            type="text"
-            @change="getProduct"
-            x-model="product"
-          >
-            <option value="">-------</option>
-            <template x-for="product in products" :key="product.id">
-              <option :value="product.id" x-text="product.title"></option>
-            </template>
-          </select>
-        </div>
-        <div class="w-full px-2 md:w-1/4">
-          <label class="block mb-1 font-poppins" for="id_quantity"
-            >Quantidade</label
-          >
-          <input
-            id="id_quantity"
-            class="w-full h-10 px-3 text-base placeholder-gray-400 border rounded-lg focus:shadow-outline"
-            type="number"
-            min="0"
-            placeholder="Quantidade"
-          />
-        </div>
-        <div class="w-full px-2 md:w-1/4">
-          <label class="block mb-1" for="id_price">Preço</label>
-          <input
-            id="id_price"
-            class="w-full h-10 px-3 text-base placeholder-gray-400 border rounded-lg focus:shadow-outline"
-            type="number"
-            min="0"
-            step="0.01"
-            placeholder="Preço"
-            x-model="price"
-          />
-        </div>
-        <div class="w-full px-2 md:w-1/4">
-          <button
-            class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded"
-            type="submit"
-          >
-            Adicionar
-          </button>
+
+    <div class="hidden sm:block max-w-5xl mx-auto" aria-hidden="true">
+      <div class="py-5">
+        <div class="border-t border-gray-200"></div>
+      </div>
+    </div>
+
+    <div>
+      <div class="container max-w-5xl mx-auto px-4 py-6">
+        <div class="prose">
+          <h1>Garlic bread with cheese: What the science tells us ...</h1>
+          <h2>The quick brown fox jumps over the lazy dog.</h2>
+          <p>
+            For years parents have espoused the health benefits of eating garlic
+            bread with cheese to their children, with the food earning such an
+            iconic status in our culture that kids will often dress up as warm,
+            cheesy loaf for Halloween.
+          </p>
+          <p>
+            But a recent study shows that the celebrated appetizer may be linked
+            to a series of rabies cases springing up around the country.
+          </p>
         </div>
       </div>
-    </form>
-    <article class="prose font-poppins">
-      <h1>Garlic bread with cheese: What the science tells us ...</h1>
-      <h2>The quick brown fox jumps over the lazy dog.</h2>
-      <p>
-        For years parents have espoused the health benefits of eating garlic
-        bread with cheese to their children, with the food earning such an
-        iconic status in our culture that kids will often dress up as warm,
-        cheesy loaf for Halloween.
-      </p>
-      <p>
-        But a recent study shows that the celebrated appetizer may be linked to
-        a series of rabies cases springing up around the country.
-      </p>
-      <!-- ... -->
-    </article>
+    </div>
   </body>
 </html>
