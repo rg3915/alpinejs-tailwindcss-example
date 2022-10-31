@@ -45,6 +45,35 @@ touch src/tailwind.css
 @tailwind utilities;
 ```
 
+### Instalando plugins e fontes
+
+```
+npm install -D @tailwindcss/typography
+```
+
+```js
+/** @type {import('tailwindcss').Config} */
+const defaultTheme = require('tailwindcss/defaultTheme')
+
+module.exports = {
+  content: [
+    "./public/**/*.html",
+    "./src/**/*.{js,ts,vue}"
+  ],
+  darkMode: 'class',
+  theme: {
+    extend: {
+      fontFamily: {
+        sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+      },
+    },
+  },
+  plugins: [
+    require('@tailwindcss/typography'),
+  ],
+}
+```
+
 ### Instalando o [Alpine.js](https://alpinejs.dev/)
 
 ```
