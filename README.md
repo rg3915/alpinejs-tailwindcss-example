@@ -51,6 +51,8 @@ touch src/tailwind.css
 npm install -D @tailwindcss/typography
 ```
 
+[Poppings](https://blog.logrocket.com/how-to-use-custom-fonts-tailwind-css)
+
 ```js
 /** @type {import('tailwindcss').Config} */
 const defaultTheme = require('tailwindcss/defaultTheme')
@@ -65,6 +67,7 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+        poppins: ['Poppins', 'sans-serif']
       },
     },
   },
