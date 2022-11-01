@@ -52,13 +52,20 @@ const getTodos = () => ({
 
 const getProducts = () => ({
   url: "http://localhost:3000/products",
+  url_sale_items: "http://localhost:3000/sale_items",
   products: [],
-  product: {},
+  sales: [],
+  product: "",
+  quantity: "",
   price: "",
+  total: 0,
   init() {
     fetch(this.url)
       .then((response) => response.json())
       .then((data) => (this.products = data));
+    fetch(this.url_sale_items)
+      .then((response) => response.json())
+      .then((data) => (this.sales = data));
   },
   getProduct() {
     // return price
@@ -67,5 +74,46 @@ const getProducts = () => ({
         this.price = item.price;
       }
     });
+  },
+  getTotal(sale) {
+    this.total += sale.quantity * sale.price;
+  },
+  saveData() {
+    if (!this.product) {
+      this.required = true;
+      return;
+    }
+    // Localiza e retorna o objeto product.
+    this.products.find((item) => {
+      if (this.product == item.id) {
+        this.product = item;
+      }
+    });
+    // Salva a venda.
+    fetch(this.url_sale_items, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        product: this.product,
+        quantity: this.quantity,
+        price: this.price,
+      }),
+    })
+      .then((response) => response.json())
+      .then(() => {
+        this.init();
+        this.product = "";
+        this.quantity = "";
+        this.price = "";
+      });
+  },
+  deleteSale(id) {
+    fetch(`http://localhost:3000/sale_items/${id}`, {
+      method: "DELETE",
+    })
+      .then((response) => response.json())
+      .then(() => {
+        this.init();
+      });
   },
 });
