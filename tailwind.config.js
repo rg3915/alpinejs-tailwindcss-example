@@ -4,7 +4,8 @@ const defaultTheme = require('tailwindcss/defaultTheme')
 module.exports = {
   content: [
     "./public/**/*.html",
-    "./src/**/*.{js,ts,vue}"
+    "./src/**/*.{js,ts,vue}",
+    './node_modules/tw-elements/dist/js/**/*.js'
   ],
   darkMode: 'class',
   theme: {
@@ -20,7 +21,8 @@ module.exports = {
   },
   plugins: [
     require('@tailwindcss/typography'),
-    require('@tailwindcss/forms'),
+    // require('@tailwindcss/forms'),
     require('@tailwindcss/aspect-ratio'),
+    require('tw-elements/dist/plugin'),
   ],
 }

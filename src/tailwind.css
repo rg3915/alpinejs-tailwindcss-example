@@ -4,6 +4,6 @@
 
 @layer components {
     .input {
-        @apply w-full h-10 px-3 text-base placeholder-gray-400 border border-gray-300 rounded-lg shadow-sm focus:border-indigo-500 focus:ring-indigo-500;
+        @apply w-full h-10 px-3 text-base bg-white placeholder-gray-400 border border-gray-300 rounded-lg shadow-sm focus:border-indigo-500 focus:ring-indigo-500;
     }
 }
