@@ -59,6 +59,7 @@ const getProducts = () => ({
   quantity: "",
   price: "",
   total: 0,
+  editTable: true,
   init() {
     fetch(this.url)
       .then((response) => response.json())

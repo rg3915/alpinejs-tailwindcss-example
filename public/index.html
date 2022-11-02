@@ -209,34 +209,92 @@
       <!-- table -->
       <!-- https://tailwindcomponents.com/component/responsive-table-5 -->
       <div>
-        <div class="container max-w-5xl mx-auto px-4 py-6">
-          <!-- component -->
+        <div class="container w-full mx-auto px-4 py-6">
           <section class="container mx-auto p-6">
             <div class="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
               <div class="w-full overflow-x-auto">
                 <table class="w-full">
                   <thead>
                     <tr
-                      class="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-300"
+                      class="text-md font-semibold tracking-wide text-left bg-gray-100 border-b border-gray-300"
                     >
-                      <th colspan="3" class="px-4 py-3 text-right">Total</th>
-                      <th class="px-4 py-3 text-right" x-text="'$ '+total"></th>
-                      <th class="px-4 py-3 text-center"></th>
+                      <th
+                        colspan="3"
+                        class="px-4 py-3 text-gray-900 text-right"
+                      >
+                        TOTAL
+                      </th>
+                      <th
+                        class="px-4 py-3 text-right text-gray-900"
+                        x-text="'$ '+total"
+                      ></th>
+                      <th class="px-4 py-3 text-green-500 text-center w-48">
+                        <div class="form-check form-switch">
+                          <input
+                            id="flexSwitchCheckDefault"
+                            type="checkbox"
+                            class="form-check-input appearance-none w-9 -ml-10 rounded-full float-left h-5 align-top bg-white bg-no-repeat bg-contain bg-gray-300 border-none focus:outline-none cursor-pointer shadow-sm"
+                            role="switch"
+                            x-model="editTable"
+                            :value="editTable"
+                          />
+                          <label
+                            class="form-check-label inline-block"
+                            for="flexSwitchCheckDefault"
+                            x-show="editTable"
+                            >Modo Editar</label
+                          >
+                          <label
+                            class="form-check-label inline-block"
+                            for="flexSwitchCheckDefault"
+                            x-show="!editTable"
+                            >Modo Leitura</label
+                          >
+                        </div>
+                      </th>
                     </tr>
                     <tr
                       class="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600"
                     >
                       <th class="px-4 py-3">Produto</th>
-                      <th class="px-4 py-3 text-center">Quantidade</th>
-                      <th class="px-4 py-3 text-right">Preço Unitário</th>
-                      <th class="px-4 py-3 text-right">Preço Total</th>
+                      <th class="px-4 py-3 text-center w-44">Quantidade</th>
+                      <th class="px-4 py-3 text-right w-44">Preço Unitário</th>
+                      <th class="px-4 py-3 text-right w-44">Preço Total</th>
                       <th class="px-4 py-3 text-center">Ações</th>
                     </tr>
                   </thead>
                   <tbody class="bg-white">
                     <template x-for="sale in sales" :key="sale.id">
                       <tr class="text-gray-700">
-                        <td class="px-4 py-3 border">
+                        <!-- product -->
+                        <td
+                          class="px-4 py-3 border"
+                          x-show="editTable"
+                          x-id="['id_product']"
+                        >
+                          <!-- editar -->
+                          <select
+                            :id="$id('id_product')"
+                            class="input"
+                            type="text"
+                            @change="getProduct"
+                            x-model="sale.product.id"
+                          >
+                            <option value="">-------</option>
+                            <template
+                              x-for="product in products"
+                              :key="product.id"
+                            >
+                              <option
+                                :value="product.id"
+                                :selected="product.id === sale.product.id"
+                                x-text="product.title"
+                              ></option>
+                            </template>
+                          </select>
+                        </td>
+                        <td class="px-4 py-3 border" x-show="!editTable">
+                          <!-- leitura -->
                           <div class="flex items-center text-sm">
                             <div
                               class="relative w-12 h-12 mr-3 rounded-full md:block"
@@ -264,29 +322,55 @@
                             </div>
                           </div>
                         </td>
+                        <!-- quantity -->
+                        <td
+                          class="px-4 py-3 text-sm border text-center"
+                          x-show="editTable"
+                          x-id="['id_quantity']"
+                        >
+                          <!-- editar -->
+                          <input
+                            :id="$id('id_quantity')"
+                            class="input text-center"
+                            type="number"
+                            x-model="sale.quantity"
+                          />
+                        </td>
                         <td
                           class="px-4 py-3 text-sm border text-center"
                           x-text="sale.quantity"
-                        ></td>
-                        <!-- <td class="px-4 py-3 text-xs border">
-                        <span
-                          class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm"
-                          x-text="product.brand"
+                          x-show="!editTable"
                         >
-                        </span>
-                      </td> -->
-                        <!-- <td class="px-4 py-3 text-sm border">6/4/2000</td> -->
+                          <!-- leitura -->
+                        </td>
+                        <!-- price -->
+                        <td
+                          class="px-4 py-3 font-medium text-sm border text-right"
+                          x-show="editTable"
+                          x-id="['id_price']"
+                        >
+                          <!-- editar -->
+                          <input
+                            :id="$id('id_price')"
+                            class="input text-center"
+                            type="number"
+                            x-model="sale.price"
+                          />
+                        </td>
                         <td
                           class="px-4 py-3 font-medium text-green-500 text-sm border text-right"
                           x-text="'$ '+sale.price"
                         ></td>
+                        <!-- subtotal -->
                         <!-- https://stackoverflow.com/a/70077233 -->
                         <td
                           class="px-4 py-3 font-medium text-green-500 text-sm border text-right"
                           x-effect="sale.subtotal = sale.quantity * sale.price; getTotal(sale)"
                           x-text="'$ '+sale.subtotal"
+                          x-show="!editTable"
                         ></td>
                         <td class="px-4 py-3 text-sm border text-center">
+                          <!-- ações -->
                           <div class="flex item-center justify-center">
                             <div
                               class="w-4 mr-2 transform hover:cursor-pointer hover:text-purple-500 hover:scale-110"
@@ -414,6 +498,7 @@
           </div>
         </div>
       </div>
+      <!-- end gallery -->
     </div>
   </body>
 </html>
