@@ -9,14 +9,6 @@
       "task": "Two"
     },
     {
-      "id": 3,
-      "task": "Three"
-    },
-    {
-      "task": "fox jumps",
-      "id": 5
-    },
-    {
       "task": "The quick brown fox",
       "id": 6
     },
@@ -170,22 +162,6 @@
   "sale_items": [
     {
       "product": {
-        "id": 3,
-        "title": "Samsung Universe 9",
-        "description": "Samsung's new variant which goes beyond Galaxy to the Universe",
-        "price": 1249,
-        "brand": "Samsung",
-        "thumbnail": "https://dummyjson.com/image/i/products/3/thumbnail.jpg",
-        "images": [
-          "https://dummyjson.com/image/i/products/3/1.jpg"
-        ]
-      },
-      "quantity": "3",
-      "price": 1249,
-      "id": 1
-    },
-    {
-      "product": {
         "id": 1,
         "title": "iPhone 9",
         "description": "An apple mobile which is nothing like apple",
@@ -203,24 +179,6 @@
       "quantity": 2,
       "price": 549,
       "id": 2
-    },
-    {
-      "product": {
-        "id": 5,
-        "title": "Huawei P30",
-        "description": "Huawei’s re-badged P30 Pro New Edition was officially unveiled yesterday in Germany and now the device has made its way to the UK.",
-        "price": 499,
-        "brand": "Huawei",
-        "thumbnail": "https://dummyjson.com/image/i/products/5/thumbnail.jpg",
-        "images": [
-          "https://dummyjson.com/image/i/products/5/1.jpg",
-          "https://dummyjson.com/image/i/products/5/2.jpg",
-          "https://dummyjson.com/image/i/products/5/3.jpg"
-        ]
-      },
-      "quantity": "3",
-      "price": 499,
-      "id": 6
     },
     {
       "product": {
@@ -260,6 +218,45 @@
       "quantity": "1",
       "price": 1099,
       "id": 8
+    },
+    {
+      "product": {
+        "id": 8,
+        "title": "Microsoft Surface Laptop 4",
+        "description": "Style and speed. Stand out on HD video calls backed by Studio Mics. Capture ideas on the vibrant touchscreen.",
+        "price": 1499,
+        "brand": "Microsoft Surface",
+        "thumbnail": "https://dummyjson.com/image/i/products/8/thumbnail.jpg",
+        "images": [
+          "https://dummyjson.com/image/i/products/8/1.jpg",
+          "https://dummyjson.com/image/i/products/8/2.jpg",
+          "https://dummyjson.com/image/i/products/8/3.jpg",
+          "https://dummyjson.com/image/i/products/8/4.jpg",
+          "https://dummyjson.com/image/i/products/8/thumbnail.jpg"
+        ]
+      },
+      "quantity": "1",
+      "price": 1499,
+      "id": 9
+    },
+    {
+      "product": {
+        "id": 10,
+        "title": "HP Pavilion 15-DK1056WM",
+        "description": "HP Pavilion 15-DK1056WM Gaming Laptop 10th Gen Core i5, 8GB, 256GB SSD, GTX 1650 4GB, Windows 10",
+        "price": 1220,
+        "brand": "HP Pavilion",
+        "thumbnail": "https://dummyjson.com/image/i/products/10/thumbnail.jpeg",
+        "images": [
+          "https://dummyjson.com/image/i/products/10/1.jpg",
+          "https://dummyjson.com/image/i/products/10/2.jpg",
+          "https://dummyjson.com/image/i/products/10/3.jpg",
+          "https://dummyjson.com/image/i/products/10/thumbnail.jpeg"
+        ]
+      },
+      "quantity": "2",
+      "price": 1220,
+      "id": 10
     }
   ]
 }
