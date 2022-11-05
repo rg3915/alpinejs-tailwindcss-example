@@ -60,6 +60,7 @@ const getProducts = () => ({
   price: "",
   total: 0,
   editTable: true,
+  saveAuto: true,
   init() {
     fetch(this.url)
       .then((response) => response.json())
@@ -109,6 +110,9 @@ const getProducts = () => ({
       });
   },
   editSale(item) {
+    if (!this.saveAuto) {
+      return;
+    }
     if (!item.product) {
       this.required = true;
       return;

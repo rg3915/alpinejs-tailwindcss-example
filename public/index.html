@@ -251,6 +251,23 @@
                             >Modo Leitura</label
                           >
                         </div>
+                        <!-- Salvar automaticamente -->
+                        <div class="form-check form-switch" x-show="editTable">
+                          <input
+                            id="flexSwitchCheckSave"
+                            type="checkbox"
+                            class="form-check-input appearance-none w-9 -ml-10 rounded-full float-left h-5 align-top bg-white bg-no-repeat bg-contain bg-gray-300 border-none focus:outline-none cursor-pointer shadow-sm"
+                            role="switch"
+                            x-model="saveAuto"
+                            :value="saveAuto"
+                            disabled
+                          />
+                          <label
+                            class="form-check-label inline-block"
+                            for="flexSwitchCheckSave"
+                            >Salvar auto</label
+                          >
+                        </div>
                       </th>
                     </tr>
                     <tr
@@ -277,7 +294,7 @@
                             :id="$id('id_product')"
                             class="input"
                             type="text"
-                            @change="getProduct; sale.edit=true"
+                            @change="getProduct; sale.edit=true; editSale(sale)"
                             x-model="sale.product"
                           >
                             <option value="">-------</option>
@@ -334,7 +351,7 @@
                             class="input text-center"
                             type="number"
                             x-model="sale.quantity"
-                            @change="sale.edit=true"
+                            @change="sale.edit=true; editSale(sale)"
                           />
                         </td>
                         <td
@@ -356,7 +373,7 @@
                             class="input text-center"
                             type="number"
                             x-model="sale.price"
-                            @change="sale.edit=true"
+                            @change="sale.edit=true; editSale(sale)"
                           />
                         </td>
                         <td
@@ -399,7 +416,7 @@
                               </svg>
                             </div>
                             <!-- Salvar Edição -->
-                            <div x-show="editTable">
+                            <!-- <div x-show="editTable">
                               <div
                                 class="mr-2"
                                 :class="{ 'text-green-500':sale.edit }"
@@ -421,9 +438,9 @@
                                   />
                                 </svg>
                               </div>
-                            </div>
+                            </div> -->
                             <!-- Não faz nada -->
-                            <div x-show="editTable">
+                            <!-- <div x-show="editTable">
                               <div class="mr-2" x-show="!sale.edit">
                                 <svg
                                   xmlns="http://www.w3.org/2000/svg"
@@ -440,7 +457,7 @@
                                   />
                                 </svg>
                               </div>
-                            </div>
+                            </div> -->
                             <!-- Editar -->
                             <!-- <div
                               class="w-4 mr-2 transform hover:cursor-pointer hover:text-purple-500 hover:scale-110"
