@@ -278,7 +278,7 @@
                             class="input"
                             type="text"
                             @change="getProduct"
-                            x-model="sale.product.id"
+                            x-model="sale.product"
                           >
                             <option value="">-------</option>
                             <template
@@ -372,6 +372,14 @@
                         <td class="px-4 py-3 text-sm border text-center">
                           <!-- ações -->
                           <div class="flex item-center justify-center">
+                            <div>
+                              <button
+                                class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded"
+                                @click="editSale(sale)"
+                              >
+                                Salvar
+                              </button>
+                            </div>
                             <div
                               class="w-4 mr-2 transform hover:cursor-pointer hover:text-purple-500 hover:scale-110"
                             >

@@ -108,6 +108,34 @@ const getProducts = () => ({
         this.price = "";
       });
   },
+  editSale(item) {
+    if (!item.product) {
+      this.required = true;
+      return;
+    }
+    // Localiza e retorna o objeto product.
+    this.products.find((obj) => {
+      if (item.product == obj.id) {
+        item.product = obj;
+      }
+    });
+    // Edita a venda.
+    const payload = { ...item };
+    fetch(`${this.url_sale_items}/${item.id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        // Todo atualizar os itens
+        this.sales.find((obj) => {
+          if (obj.product == data.product) {
+            item.product = data.product;
+          }
+        });
+      });
+  },
   deleteSale(id) {
     fetch(`http://localhost:3000/sale_items/${id}`, {
       method: "DELETE",
