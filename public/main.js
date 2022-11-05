@@ -160,12 +160,7 @@ const getProductEdition = (sale) => ({
       this.required = true;
       return;
     }
-    // Localiza e retorna o objeto product.
-    this.products.find((obj) => {
-      if (item.product == obj.id) {
-        item.product = obj;
-      }
-    });
+    this.findProduct()
     item.edit = false;
     delete item.subtotal;
     // Edita a venda.
