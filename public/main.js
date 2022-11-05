@@ -119,6 +119,7 @@ const getProducts = () => ({
         item.product = obj;
       }
     });
+    item.edit = false;
     // Edita a venda.
     const payload = { ...item };
     fetch(`${this.url_sale_items}/${item.id}`, {
