@@ -151,3 +151,23 @@ const getProducts = () => ({
       });
   },
 });
+
+const getPersons = () => ({
+  persons: [
+    { id: 1, name: "Huguinho" },
+    { id: 2, name: "Zezinho" },
+    { id: 3, name: "Luizinho" },
+  ],
+});
+
+const customer = (person) => ({
+  open: false,
+  updated: false,
+  toggle() {
+    this.open = !this.open;
+  },
+  changeName() {
+    this.updated = !this.updated;
+    person.name = "Lorem";
+  },
+});

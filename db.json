@@ -204,17 +204,17 @@
     },
     {
       "product": {
-        "id": 6,
-        "title": "MacBook Pro",
-        "description": "MacBook Pro 2021 with mini-LED display may launch between September, November",
-        "price": 1749,
-        "brand": "Apple",
-        "thumbnail": "https://dummyjson.com/image/i/products/6/thumbnail.png",
+        "id": 10,
+        "title": "HP Pavilion 15-DK1056WM",
+        "description": "HP Pavilion 15-DK1056WM Gaming Laptop 10th Gen Core i5, 8GB, 256GB SSD, GTX 1650 4GB, Windows 10",
+        "price": 1220,
+        "brand": "HP Pavilion",
+        "thumbnail": "https://dummyjson.com/image/i/products/10/thumbnail.jpeg",
         "images": [
-          "https://dummyjson.com/image/i/products/6/1.png",
-          "https://dummyjson.com/image/i/products/6/2.jpg",
-          "https://dummyjson.com/image/i/products/6/3.png",
-          "https://dummyjson.com/image/i/products/6/4.jpg"
+          "https://dummyjson.com/image/i/products/10/1.jpg",
+          "https://dummyjson.com/image/i/products/10/2.jpg",
+          "https://dummyjson.com/image/i/products/10/3.jpg",
+          "https://dummyjson.com/image/i/products/10/thumbnail.jpeg"
         ]
       },
       "quantity": "3",

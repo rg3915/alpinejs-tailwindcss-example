@@ -33,6 +33,7 @@
 
   <body class="font-poppins">
     <div class="container max-w-5xl mx-auto px-4 py-6">
+      <!-- Expandir -->
       <div x-data="{ open: false }">
         <button
           class="py-2 px-4 my-4 h-10 rounded-lg text-white font-bold hover:bg-indigo-400 bg-indigo-500"
@@ -565,5 +566,40 @@
       </div>
       <!-- end gallery -->
     </div>
+
+    <div class="hidden sm:block max-w-5xl mx-auto" aria-hidden="true">
+      <div class="py-5">
+        <div class="border-t border-gray-200"></div>
+      </div>
+    </div>
+
+    <!-- component -->
+    <div class="container max-w-5xl mx-auto px-4 py-6">
+      <h1>Componentes</h1>
+      <!-- componente pai -->
+      <div x-data="getPersons()">
+        <ul>
+          <template x-for="person in persons" :key="person.id">
+            <!-- componente filho -->
+            <div x-data="customer(person)">
+              <li x-text="person.name" x-show="open"></li>
+              <button
+                class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded"
+                @click="toggle"
+              >
+                Mostrar
+              </button>
+              <button
+                class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded"
+                @click="changeName"
+              >
+                Mudar nome
+              </button>
+            </div>
+          </template>
+        </ul>
+      </div>
+    </div>
+    <!-- end component -->
   </body>
 </html>
