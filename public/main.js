@@ -77,6 +77,7 @@ const getSales = () => ({
   sales: [],
   total: 0,
   product: "",
+  produto: "",
   quantity: "",
   price: "",
   editTable: false,
@@ -85,39 +86,42 @@ const getSales = () => ({
     fetch(this.url)
       .then((response) => response.json())
       .then((data) => (this.sales = data));
-
-    // this.sales.map((item) => {
-    // })
   },
   getTotal(sale) {
     this.total += sale.quantity * sale.price;
   },
-  getPrice() {
+  async findProduct() {
+    const url = `http://localhost:3000/products/${this.product}`;
+    await fetch(url)
+      .then((response) => response.json())
+      .then((data) => (this.produto = data));
+    // Localiza e retorna o objeto product.
+    // this.products.find((item) => {
+    //   if (this.product == item.id) {
+    //     this.price = item.price;
+    //     this.quantity = Math.floor(Math.random() * 10);
+    //   }
+    // });
+  },
+  async getPrice() {
     // return price
-    this.products.find((item) => {
-      if (this.product == item.id) {
-        this.price = item.price;
-        this.quantity = Math.floor(Math.random() * 10);
-      }
-    });
+    await this.findProduct();
+    this.price = this.produto.price;
+    this.quantity = Math.floor(Math.random() * 10);
   },
   saveData() {
     if (!this.product) {
       this.required = true;
       return;
     }
-    // // Localiza e retorna o objeto product.
-    // this.products.find((item) => {
-    //   if (this.product == item.id) {
-    //     this.product = item;
-    //   }
-    // });
+    this.findProduct();
+    this.product = this.produto;
     // Salva a venda.
-    fetch(this.url_sale_items, {
+    fetch(this.url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        product: parseInt(this.product),
+        product: this.product,
         quantity: parseInt(this.quantity),
         price: this.price,
         edit: false,
@@ -136,7 +140,6 @@ const getSales = () => ({
 
 const getProductReadOnly = (sale) => ({
   deleteSale(id) {
-    console.log(1);
     fetch(`http://localhost:3000/sale_items/${id}`, {
       method: "DELETE",
     })
@@ -167,7 +170,7 @@ const getProductEdition = (sale) => ({
     delete item.subtotal;
     // Edita a venda.
     const payload = { ...item };
-    fetch(`${this.url_sale_items}/${item.id}`, {
+    fetch(`${this.url}/${item.id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
@@ -181,10 +184,8 @@ const getProductEdition = (sale) => ({
           }
         });
       });
-    console.table(item);
   },
   deleteSale(id) {
-    console.log(2);
     fetch(`http://localhost:3000/sale_items/${id}`, {
       method: "DELETE",
     })
