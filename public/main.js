@@ -1,3 +1,25 @@
+document.addEventListener("alpine:init", () => {
+  Alpine.store("getCategories", {
+    url: "http://localhost:3000/categories",
+    categories: [],
+    getAllCategories() {
+      fetch(this.url)
+        .then((response) => response.json())
+        .then((data) => (this.categories = data));
+    },
+  });
+
+  Alpine.store("getProducts", {
+    url: "http://localhost:3000/products",
+    products: [],
+    getAllProducts() {
+      fetch(this.url)
+        .then((response) => response.json())
+        .then((data) => (this.products = data));
+    },
+  });
+});
+
 const getTodos = () => ({
   url: "http://localhost:3000/todos",
   todos: [],
@@ -50,55 +72,55 @@ const getTodos = () => ({
   },
 });
 
-const getProducts = () => ({
-  url: "http://localhost:3000/products",
-  url_sale_items: "http://localhost:3000/sale_items",
-  products: [],
+const getSales = () => ({
+  url: "http://localhost:3000/sale_items",
   sales: [],
+  total: 0,
   product: "",
   quantity: "",
   price: "",
-  total: 0,
-  editTable: true,
+  editTable: false,
   saveAuto: true,
   init() {
     fetch(this.url)
       .then((response) => response.json())
-      .then((data) => (this.products = data));
-    fetch(this.url_sale_items)
-      .then((response) => response.json())
       .then((data) => (this.sales = data));
+
+    // this.sales.map((item) => {
+    // })
   },
-  getProduct() {
+  getTotal(sale) {
+    this.total += sale.quantity * sale.price;
+  },
+  getPrice() {
     // return price
     this.products.find((item) => {
       if (this.product == item.id) {
         this.price = item.price;
+        this.quantity = Math.floor(Math.random() * 10);
       }
     });
-  },
-  getTotal(sale) {
-    this.total += sale.quantity * sale.price;
   },
   saveData() {
     if (!this.product) {
       this.required = true;
       return;
     }
-    // Localiza e retorna o objeto product.
-    this.products.find((item) => {
-      if (this.product == item.id) {
-        this.product = item;
-      }
-    });
+    // // Localiza e retorna o objeto product.
+    // this.products.find((item) => {
+    //   if (this.product == item.id) {
+    //     this.product = item;
+    //   }
+    // });
     // Salva a venda.
     fetch(this.url_sale_items, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        product: this.product,
-        quantity: this.quantity,
+        product: parseInt(this.product),
+        quantity: parseInt(this.quantity),
         price: this.price,
+        edit: false,
       }),
     })
       .then((response) => response.json())
@@ -107,8 +129,26 @@ const getProducts = () => ({
         this.product = "";
         this.quantity = "";
         this.price = "";
+        this.edit = false;
       });
   },
+});
+
+const getProductReadOnly = (sale) => ({
+  deleteSale(id) {
+    console.log(1);
+    fetch(`http://localhost:3000/sale_items/${id}`, {
+      method: "DELETE",
+    })
+      .then((response) => response.json())
+      .then(() => {
+        this.init();
+      });
+  },
+});
+
+const getProductEdition = (sale) => ({
+  // Modo Edição
   editSale(item) {
     if (!this.saveAuto) {
       return;
@@ -124,6 +164,7 @@ const getProducts = () => ({
       }
     });
     item.edit = false;
+    delete item.subtotal;
     // Edita a venda.
     const payload = { ...item };
     fetch(`${this.url_sale_items}/${item.id}`, {
@@ -140,8 +181,10 @@ const getProducts = () => ({
           }
         });
       });
+    console.table(item);
   },
   deleteSale(id) {
+    console.log(2);
     fetch(`http://localhost:3000/sale_items/${id}`, {
       method: "DELETE",
     })

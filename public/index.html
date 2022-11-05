@@ -32,7 +32,7 @@
   </head>
 
   <body class="font-poppins">
-    <div class="container max-w-5xl mx-auto px-4 py-6">
+    <div class="container mx-auto flex justify-center px-4 py-6">
       <!-- Expandir -->
       <div x-data="{ open: false }">
         <button
@@ -75,9 +75,9 @@
       </div>
     </div>
 
-    <div>
-      <div class="container max-w-5xl mx-auto px-4 py-6">
-        <!-- Todos -->
+    <div class="container mx-auto grid grid-cols-1 md:grid-cols-3">
+      <!-- Todos -->
+      <div class="px-4 py-6">
         <div
           class="container flex mx-auto"
           x-data="getTodos()"
@@ -139,6 +139,58 @@
           </div>
         </div>
       </div>
+      <!-- Categorias -->
+      <div class="px-4 py-6">
+        <div
+          class="container flex mx-auto"
+          x-data="$store.getCategories.getAllCategories()"
+        >
+          <div>
+            <h1>Categorias com $store</h1>
+
+            <div class="hidden sm:block max-w-5xl mx-auto" aria-hidden="true">
+              <div class="py-5">
+                <div class="border-t border-gray-200"></div>
+              </div>
+            </div>
+
+            <ul>
+              <template
+                x-for="category in $store.getCategories.categories"
+                :key="category.id"
+              >
+                <li class="list-decimal" x-text="category.title"></li>
+              </template>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- Produtos -->
+      <div class="px-4 py-6">
+        <div
+          class="container flex mx-auto"
+          x-data="$store.getProducts.getAllProducts()"
+        >
+          <div>
+            <h1>Produtos com $store</h1>
+
+            <div class="hidden sm:block max-w-5xl mx-auto" aria-hidden="true">
+              <div class="py-5">
+                <div class="border-t border-gray-200"></div>
+              </div>
+            </div>
+
+            <ul>
+              <template
+                x-for="product in $store.getProducts.products"
+                :key="product.id"
+              >
+                <li class="list-decimal" x-text="product.title"></li>
+              </template>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="hidden sm:block max-w-5xl mx-auto" aria-hidden="true">
@@ -147,7 +199,7 @@
       </div>
     </div>
 
-    <div x-data="getProducts()">
+    <div x-data="getSales()">
       <!-- inlineform -->
       <div>
         <div class="container max-w-5xl mx-auto px-4 py-6">
@@ -162,11 +214,14 @@
                   id="id_product"
                   class="input"
                   type="text"
-                  @change="getProduct"
+                  @change="getPrice"
                   x-model="product"
                 >
                   <option value="">-------</option>
-                  <template x-for="product in products" :key="product.id">
+                  <template
+                    x-for="product in $store.getProducts.products"
+                    :key="product.id"
+                  >
                     <option :value="product.id" x-text="product.title"></option>
                   </template>
                 </select>
@@ -281,37 +336,12 @@
                       <th class="px-4 py-3 text-center">Ações</th>
                     </tr>
                   </thead>
-                  <tbody class="bg-white">
+                  <tbody class="bg-white" x-show="!editTable">
                     <template x-for="sale in sales" :key="sale.id">
-                      <tr class="text-gray-700">
+                      <!-- componente Somente Leitura -->
+                      <tr class="text-gray-700" x-data="getProductReadOnly">
                         <!-- product -->
-                        <td
-                          class="px-4 py-3 border"
-                          x-show="editTable"
-                          x-id="['id_product']"
-                        >
-                          <!-- editar -->
-                          <select
-                            :id="$id('id_product')"
-                            class="input"
-                            type="text"
-                            @change="getProduct; sale.edit=true; editSale(sale)"
-                            x-model="sale.product"
-                          >
-                            <option value="">-------</option>
-                            <template
-                              x-for="product in products"
-                              :key="product.id"
-                            >
-                              <option
-                                :value="product.id"
-                                :selected="product.id === sale.product.id"
-                                x-text="product.title"
-                              ></option>
-                            </template>
-                          </select>
-                        </td>
-                        <td class="px-4 py-3 border" x-show="!editTable">
+                        <td class="px-4 py-3 border">
                           <!-- leitura -->
                           <div class="flex items-center text-sm">
                             <div
@@ -343,40 +373,9 @@
                         <!-- quantity -->
                         <td
                           class="px-4 py-3 text-sm border text-center"
-                          x-show="editTable"
-                          x-id="['id_quantity']"
-                        >
-                          <!-- editar -->
-                          <input
-                            :id="$id('id_quantity')"
-                            class="input text-center"
-                            type="number"
-                            x-model="sale.quantity"
-                            @change="sale.edit=true; editSale(sale)"
-                          />
-                        </td>
-                        <td
-                          class="px-4 py-3 text-sm border text-center"
                           x-text="sale.quantity"
-                          x-show="!editTable"
-                        >
-                          <!-- leitura -->
-                        </td>
+                        ></td>
                         <!-- price -->
-                        <td
-                          class="px-4 py-3 font-medium text-sm border text-right"
-                          x-show="editTable"
-                          x-id="['id_price']"
-                        >
-                          <!-- editar -->
-                          <input
-                            :id="$id('id_price')"
-                            class="input text-center"
-                            type="number"
-                            x-model="sale.price"
-                            @change="sale.edit=true; editSale(sale)"
-                          />
-                        </td>
                         <td
                           class="px-4 py-3 font-medium text-green-500 text-sm border text-right"
                           x-text="'$ '+sale.price"
@@ -387,10 +386,9 @@
                           class="px-4 py-3 font-medium text-green-500 text-sm border text-right"
                           x-effect="sale.subtotal = sale.quantity * sale.price; getTotal(sale)"
                           x-text="'$ '+sale.subtotal"
-                          x-show="!editTable"
                         ></td>
+                        <!-- actions -->
                         <td class="px-4 py-3 text-sm border text-center">
-                          <!-- ações -->
                           <div class="flex items-center justify-center">
                             <!-- Ver Detalhes -->
                             <div
@@ -416,51 +414,86 @@
                                 />
                               </svg>
                             </div>
-                            <!-- Salvar Edição -->
-                            <!-- <div x-show="editTable">
-                              <div
-                                class="mr-2"
-                                :class="{ 'text-green-500':sale.edit }"
-                                @click="editSale(sale)"
-                                x-show="sale.edit"
+                            <!-- Deletar -->
+                            <div
+                              class="w-4 mr-2 transform hover:cursor-pointer hover:text-purple-500 hover:scale-110"
+                              @click="deleteSale(sale.id)"
+                            >
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
                               >
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  fill="none"
-                                  viewBox="0 0 24 24"
-                                  stroke-width="1.5"
-                                  stroke="currentColor"
-                                  class="w-6 h-6"
-                                >
-                                  <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    d="M4.5 12.75l6 6 9-13.5"
-                                  />
-                                </svg>
-                              </div>
-                            </div> -->
-                            <!-- Não faz nada -->
-                            <!-- <div x-show="editTable">
-                              <div class="mr-2" x-show="!sale.edit">
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  fill="none"
-                                  viewBox="0 0 24 24"
-                                  stroke-width="1.5"
-                                  stroke="currentColor"
-                                  class="w-6 h-6"
-                                >
-                                  <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    d="M4.5 12.75l6 6 9-13.5"
-                                  />
-                                </svg>
-                              </div>
-                            </div> -->
-                            <!-- Editar -->
-                            <!-- <div
+                                <path
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                                />
+                              </svg>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <!-- componente Modo Edição -->
+                      <tr
+                        class="text-gray-700"
+                        x-data="getProduct"
+                        x-show="editTable"
+                      >
+                        <!-- product -->
+                        <td class="px-4 py-3 border">
+                          <!-- leitura -->
+                          <div class="flex items-center text-sm">
+                            <div
+                              class="relative w-12 h-12 mr-3 rounded-full md:block"
+                            >
+                              <img
+                                class="object-cover w-full h-full rounded-full"
+                                :src="sale.product.thumbnail"
+                                alt=""
+                                loading="lazy"
+                              />
+                              <div
+                                class="absolute inset-0 rounded-full shadow-inner"
+                                aria-hidden="true"
+                              ></div>
+                            </div>
+                            <div>
+                              <p
+                                class="font-semibold text-black"
+                                x-text="sale.product.title"
+                              ></p>
+                              <p
+                                class="text-xs text-gray-600"
+                                x-text="sale.product.brand"
+                              ></p>
+                            </div>
+                          </div>
+                        </td>
+                        <!-- quantity -->
+                        <td
+                          class="px-4 py-3 text-sm border text-center"
+                          x-text="sale.quantity"
+                        ></td>
+                        <!-- price -->
+                        <td
+                          class="px-4 py-3 font-medium text-green-500 text-sm border text-right"
+                          x-text="'$ '+sale.price"
+                        ></td>
+                        <!-- subtotal -->
+                        <!-- https://stackoverflow.com/a/70077233 -->
+                        <td
+                          class="px-4 py-3 font-medium text-green-500 text-sm border text-right"
+                          x-effect="sale.subtotal = sale.quantity * sale.price; getTotal(sale)"
+                          x-text="'$ '+sale.subtotal"
+                        ></td>
+                        <!-- actions -->
+                        <td class="px-4 py-3 text-sm border text-center">
+                          <div class="flex items-center justify-center">
+                            <!-- Ver Detalhes -->
+                            <div
                               class="w-4 mr-2 transform hover:cursor-pointer hover:text-purple-500 hover:scale-110"
                             >
                               <svg
@@ -473,10 +506,131 @@
                                   stroke-linecap="round"
                                   stroke-linejoin="round"
                                   stroke-width="2"
-                                  d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
+                                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                                />
+                                <path
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
                                 />
                               </svg>
-                            </div> -->
+                            </div>
+                            <!-- Deletar -->
+                            <div
+                              class="w-4 mr-2 transform hover:cursor-pointer hover:text-purple-500 hover:scale-110"
+                              @click="deleteSale(sale.id)"
+                            >
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                              >
+                                <path
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                                />
+                              </svg>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </template>
+                  </tbody>
+                  <tbody class="bg-white" x-show="editTable">
+                    <!-- componente Modo Edição -->
+                    <template x-for="sale in sales" :key="sale.id">
+                      <tr class="text-gray-700" x-data="getProductEdition">
+                        <!-- product -->
+                        <td class="px-4 py-3 border" x-id="['id_product']">
+                          <!-- editar -->
+                          <select
+                            :id="$id('id_product')"
+                            class="input"
+                            type="text"
+                            @change="getProduct; sale.edit=true; editSale(sale)"
+                            x-model="sale.product"
+                          >
+                            <option value="">-------</option>
+                            <template
+                              x-for="product in $store.getProducts.products"
+                              :key="product.id"
+                            >
+                              <option
+                                :value="product.id"
+                                :selected="product.id === sale.product.id"
+                                x-text="product.title"
+                              ></option>
+                            </template>
+                          </select>
+                        </td>
+                        <!-- quantity -->
+                        <td
+                          class="px-4 py-3 text-sm border text-center"
+                          x-id="['id_quantity']"
+                        >
+                          <!-- editar -->
+                          <input
+                            :id="$id('id_quantity')"
+                            class="input text-center"
+                            type="number"
+                            x-model="sale.quantity"
+                            @change="sale.edit=true; editSale(sale)"
+                          />
+                        </td>
+
+                        <!-- price -->
+                        <td
+                          class="px-4 py-3 font-medium text-sm border text-right"
+                          x-id="['id_price']"
+                        >
+                          <!-- editar -->
+                          <input
+                            :id="$id('id_price')"
+                            class="input text-center"
+                            type="number"
+                            x-model="sale.price"
+                            @change="sale.edit=true; editSale(sale)"
+                          />
+                        </td>
+
+                        <!-- subtotal -->
+                        <!-- https://stackoverflow.com/a/70077233 -->
+                        <td
+                          class="px-4 py-3 font-medium text-green-500 text-sm border text-right"
+                          x-effect="sale.subtotal = sale.quantity * sale.price; getTotal(sale)"
+                          x-text="'$ '+sale.subtotal"
+                        ></td>
+                        <!-- actions -->
+                        <td class="px-4 py-3 text-sm border text-center">
+                          <div class="flex items-center justify-center">
+                            <!-- Ver Detalhes -->
+                            <div
+                              class="w-4 mr-2 transform hover:cursor-pointer hover:text-purple-500 hover:scale-110"
+                            >
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                              >
+                                <path
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                                />
+                                <path
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                                />
+                              </svg>
+                            </div>
                             <!-- Deletar -->
                             <div
                               class="w-4 mr-2 transform hover:cursor-pointer hover:text-purple-500 hover:scale-110"
@@ -527,7 +681,10 @@
             <div
               class="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8"
             >
-              <template x-for="product in products" :key="product.id">
+              <template
+                x-for="product in $store.getProducts.products"
+                :key="product.id"
+              >
                 <div class="group relative">
                   <div
                     class="min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75"
