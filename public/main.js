@@ -14,6 +14,29 @@ document.addEventListener("alpine:init", async () => {
   // console.log("await res.json()");
   // console.log(await res.json());
 
+  // Funciona
+  // Alpine.store("getProducts", {
+  //   url: "http://localhost:3000/products",
+  //   products: [],
+  //   getAllProducts() {
+  //     fetch(this.url)
+  //       .then((response) => response.json())
+  //       .then((data) => (this.products = data));
+  //   },
+  // });
+
+  // Alpine.store("getProducts", {
+  //   url: "http://localhost:3000/products",
+  //   products: [],
+  //   getAllProducts() {
+  //     fetch(this.url)
+  //       .then((response) => response.json())
+  //       .then((data) => (this.products = data));
+  //   },
+  // });
+});
+
+document.addEventListener("alpine:init", () => {
   Alpine.store("getProducts", {
     url: "http://localhost:3000/products",
     products: [],
@@ -21,8 +44,18 @@ document.addEventListener("alpine:init", async () => {
       fetch(this.url)
         .then((response) => response.json())
         .then((data) => (this.products = data));
+
+      console.log(this.products);
     },
   });
+
+  Alpine.store("getProducts").getAllProducts();
+
+  const lorem = () => ({
+    products: Alpine.store("getProducts").products,
+  });
+
+  console.log([...lorem().products]);
 });
 
 const getTodos = () => ({

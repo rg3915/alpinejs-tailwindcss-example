@@ -172,101 +172,44 @@
   "sale_items": [
     {
       "product": {
-        "id": 2,
-        "title": "iPhone X",
-        "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
-        "price": 899,
+        "id": 6,
+        "title": "MacBook Pro",
+        "description": "MacBook Pro 2021 with mini-LED display may launch between September, November",
+        "price": 1749,
         "brand": "Apple",
-        "thumbnail": "https://dummyjson.com/image/i/products/2/thumbnail.jpg",
+        "thumbnail": "https://dummyjson.com/image/i/products/6/thumbnail.png",
         "images": [
-          "https://dummyjson.com/image/i/products/2/1.jpg",
-          "https://dummyjson.com/image/i/products/2/2.jpg",
-          "https://dummyjson.com/image/i/products/2/3.jpg",
-          "https://dummyjson.com/image/i/products/2/thumbnail.jpg"
-        ]
-      },
-      "quantity": "6",
-      "price": 899,
-      "edit": false,
-      "id": 6
-    },
-    {
-      "product": {
-        "id": 2,
-        "title": "iPhone X",
-        "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
-        "price": 899,
-        "brand": "Apple",
-        "thumbnail": "https://dummyjson.com/image/i/products/2/thumbnail.jpg",
-        "images": [
-          "https://dummyjson.com/image/i/products/2/1.jpg",
-          "https://dummyjson.com/image/i/products/2/2.jpg",
-          "https://dummyjson.com/image/i/products/2/3.jpg",
-          "https://dummyjson.com/image/i/products/2/thumbnail.jpg"
-        ]
-      },
-      "quantity": "8",
-      "price": "501",
-      "edit": false,
-      "id": 7
-    },
-    {
-      "product": {
-        "id": 9,
-        "title": "Infinix INBOOK",
-        "description": "Infinix Inbook X1 Ci3 10th 8GB 256GB 14 Win10 Grey – 1 Year Warranty",
-        "price": 1099,
-        "brand": "Infinix",
-        "thumbnail": "https://dummyjson.com/image/i/products/9/thumbnail.jpg",
-        "images": [
-          "https://dummyjson.com/image/i/products/9/1.jpg",
-          "https://dummyjson.com/image/i/products/9/2.png",
-          "https://dummyjson.com/image/i/products/9/3.png",
-          "https://dummyjson.com/image/i/products/9/4.jpg",
-          "https://dummyjson.com/image/i/products/9/thumbnail.jpg"
-        ]
-      },
-      "quantity": 4,
-      "price": 1220,
-      "edit": false,
-      "id": 8
-    },
-    {
-      "product": {
-        "id": 7,
-        "title": "Samsung Galaxy Book",
-        "description": "Samsung Galaxy Book S (2020) Laptop With Intel Lakefield Chip, 8GB of RAM Launched",
-        "price": 1499,
-        "brand": "Samsung",
-        "thumbnail": "https://dummyjson.com/image/i/products/7/thumbnail.jpg",
-        "images": [
-          "https://dummyjson.com/image/i/products/7/1.jpg",
-          "https://dummyjson.com/image/i/products/7/2.jpg",
-          "https://dummyjson.com/image/i/products/7/3.jpg",
-          "https://dummyjson.com/image/i/products/7/thumbnail.jpg"
-        ]
-      },
-      "quantity": 3,
-      "price": 1499,
-      "edit": false,
-      "id": 9
-    },
-    {
-      "product": {
-        "id": 3,
-        "title": "Samsung Universe 9",
-        "description": "Samsung's new variant which goes beyond Galaxy to the Universe",
-        "price": 1249,
-        "brand": "Samsung",
-        "thumbnail": "https://dummyjson.com/image/i/products/3/thumbnail.jpg",
-        "images": [
-          "https://dummyjson.com/image/i/products/3/1.jpg"
+          "https://dummyjson.com/image/i/products/6/1.png",
+          "https://dummyjson.com/image/i/products/6/2.jpg",
+          "https://dummyjson.com/image/i/products/6/3.png",
+          "https://dummyjson.com/image/i/products/6/4.jpg"
         ]
       },
       "quantity": 7,
       "price": 1249,
       "edit": false,
       "id": 10
+    },
+    {
+      "product": {},
+      "quantity": "2",
+      "price": 1499,
+      "edit": false,
+      "id": 11
+    },
+    {
+      "product": {},
+      "quantity": "3",
+      "price": 1220,
+      "edit": false,
+      "id": 12
+    },
+    {
+      "product": {},
+      "quantity": "4",
+      "price": 1499,
+      "edit": false,
+      "id": 13
     }
   ]
 }

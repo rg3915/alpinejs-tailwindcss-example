@@ -238,3 +238,8 @@ npm run lint
 ### Links
 
 https://github.com/alpine-collective/awesome
+
+https://github.com/thecodeholic/tailwindcss-ecommerce/blob/master/src/app.js
+
+
+https://youtu.be/TN0955TvodA
