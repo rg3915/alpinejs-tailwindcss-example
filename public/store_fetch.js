@@ -2,20 +2,24 @@ document.addEventListener("alpine:init", () => {
   Alpine.store("getCategories", {
     categories: [],
     url: "http://localhost:3000/categories",
-    init(){
-        console.log(1)
-        fetch(this.url)
+    init() {
+      fetch(this.url)
         .then((response) => response.json())
         .then((data) => (this.categories = data));
-    }
+    },
   });
 
-  Alpine.data("getNewCategories", () => ({
-    newCategories: [],
+  Alpine.data("getProducts", () => ({
+    products: [],
+    url: "http://localhost:3000/products",
     init() {
-      console.log(2)
-      this.newCategories = this.$store.getCategories.categories;
-      console.log('this.newCategories', this.newCategories)
+      fetch(this.url)
+        .then((response) => response.json())
+        .then((data) => (this.products = data));
+    },
+    teste() {
+      console.log("this.$store.getCategories.categories");
+      console.table(this.$store.getCategories.categories);
     },
   }));
 });

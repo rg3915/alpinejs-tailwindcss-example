@@ -9,11 +9,6 @@ document.addEventListener("alpine:init", async () => {
     },
   });
 
-  // const url = "http://localhost:3000/products";
-  // const res = await fetch(url);
-  // console.log("await res.json()");
-  // console.log(await res.json());
-
   // Funciona
   // Alpine.store("getProducts", {
   //   url: "http://localhost:3000/products",

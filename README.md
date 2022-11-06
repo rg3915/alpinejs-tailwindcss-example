@@ -243,3 +243,6 @@ https://github.com/thecodeholic/tailwindcss-ecommerce/blob/master/src/app.js
 
 
 https://youtu.be/TN0955TvodA
+
+
+https://codewithhugo.com/alpine-tips/

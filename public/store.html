@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+    />
+    <!-- favicon -->
+    <link rel="shortcut icon" href="https://alpinejs.dev/favicon.png" />
+    <!-- -->
+    <title>Alpine.js and TailwindCSS</title>
+    <!-- Font-awesome -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <!-- tailwind.css -->
+    <link rel="stylesheet" href="./tailwind.css" />
+    <!-- Inter font -->
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+    <!-- alpine.js 3 -->
+    <script
+      defer
+      src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+    <!-- store_fetch.js -->
+    <script src="./store_fetch.js"></script>
+    <!-- https://blog.logrocket.com/how-to-use-custom-fonts-tailwind-css/ -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body class="font-poppins">
+    <a href="/" class="text-3xl font-bold">Voltar</a>
+    <div class="mt-12 flex flex-col justify-evenly sm:flex-row">
+      <!-- Categorias -->
+      <div x-data>
+        <h1 class="text-3xl font-bold">Categorias</h1>
+        <ul>
+          <template
+            x-for="category in $store.getCategories.categories"
+            :key="category.id"
+          >
+            <li x-text="category.title"></li>
+          </template>
+        </ul>
+      </div>
+
+      <!-- Produtos -->
+      <div x-data="getProducts">
+        <h1 class="text-2xl font-bold" @click="teste">
+          Produtos (clique aqui)
+        </h1>
+        <ul>
+          <template x-for="product in products" :key="product.id">
+            <li x-text="product.title"></li>
+          </template>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>
