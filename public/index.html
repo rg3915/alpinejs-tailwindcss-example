@@ -551,7 +551,7 @@
                             :id="$id('id_product')"
                             class="input"
                             type="text"
-                            @change="getProduct; sale.edit=true; editSale(sale)"
+                            @change="sale.edit=true; editSale(sale)"
                             x-model="sale.product"
                           >
                             <option value="">-------</option>

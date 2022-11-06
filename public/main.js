@@ -1,4 +1,4 @@
-document.addEventListener("alpine:init", () => {
+document.addEventListener("alpine:init", async () => {
   Alpine.store("getCategories", {
     url: "http://localhost:3000/categories",
     categories: [],
@@ -8,6 +8,11 @@ document.addEventListener("alpine:init", () => {
         .then((data) => (this.categories = data));
     },
   });
+
+  // const url = "http://localhost:3000/products";
+  // const res = await fetch(url);
+  // console.log("await res.json()");
+  // console.log(await res.json());
 
   Alpine.store("getProducts", {
     url: "http://localhost:3000/products",
@@ -77,18 +82,23 @@ const getSales = () => ({
   sales: [],
   total: 0,
   product: "",
+  // newProducts: Alpine.store('getProducts').products,
   produto: "",
   quantity: "",
   price: "",
-  editTable: false,
+  editTable: true,
   saveAuto: true,
   init() {
     fetch(this.url)
       .then((response) => response.json())
       .then((data) => (this.sales = data));
+
+    // console.log(Alpine.store('getProducts'))
   },
   getTotal(sale) {
     this.total += sale.quantity * sale.price;
+    // console.log('this.newProducts')
+    // console.log(this.newProducts)
   },
   async findProduct() {
     const url = `http://localhost:3000/products/${this.product}`;
@@ -151,8 +161,21 @@ const getProductReadOnly = (sale) => ({
 });
 
 const getProductEdition = (sale) => ({
+  async findProductEdition() {
+    const url = `http://localhost:3000/products/${this.sale.product}`;
+    await fetch(url)
+      .then((response) => response.json())
+      .then((data) => (this.sale.product = data));
+    // Localiza e retorna o objeto product.
+    // this.products.find((item) => {
+    //   if (this.product == item.id) {
+    //     this.price = item.price;
+    //     this.quantity = Math.floor(Math.random() * 10);
+    //   }
+    // });
+  },
   // Modo Edição
-  editSale(item) {
+  async editSale(item) {
     if (!this.saveAuto) {
       return;
     }
@@ -160,7 +183,7 @@ const getProductEdition = (sale) => ({
       this.required = true;
       return;
     }
-    this.findProduct()
+    await this.findProductEdition(item);
     item.edit = false;
     delete item.subtotal;
     // Edita a venda.

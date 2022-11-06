@@ -171,46 +171,38 @@
   ],
   "sale_items": [
     {
-      "product": "5",
-      "quantity": "1",
-      "price": 899,
-      "edit": false,
-      "id": 5
-    },
-    {
       "product": {
-        "id": 1,
-        "title": "iPhone 9",
-        "description": "An apple mobile which is nothing like apple",
-        "price": 549,
+        "id": 2,
+        "title": "iPhone X",
+        "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
+        "price": 899,
         "brand": "Apple",
-        "thumbnail": "https://dummyjson.com/image/i/products/1/thumbnail.jpg",
+        "thumbnail": "https://dummyjson.com/image/i/products/2/thumbnail.jpg",
         "images": [
-          "https://dummyjson.com/image/i/products/1/1.jpg",
-          "https://dummyjson.com/image/i/products/1/2.jpg",
-          "https://dummyjson.com/image/i/products/1/3.jpg",
-          "https://dummyjson.com/image/i/products/1/4.jpg",
-          "https://dummyjson.com/image/i/products/1/thumbnail.jpg"
+          "https://dummyjson.com/image/i/products/2/1.jpg",
+          "https://dummyjson.com/image/i/products/2/2.jpg",
+          "https://dummyjson.com/image/i/products/2/3.jpg",
+          "https://dummyjson.com/image/i/products/2/thumbnail.jpg"
         ]
       },
-      "quantity": "9",
+      "quantity": "6",
       "price": 899,
       "edit": false,
       "id": 6
     },
     {
       "product": {
-        "id": 6,
-        "title": "MacBook Pro",
-        "description": "MacBook Pro 2021 with mini-LED display may launch between September, November",
-        "price": 1749,
+        "id": 2,
+        "title": "iPhone X",
+        "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
+        "price": 899,
         "brand": "Apple",
-        "thumbnail": "https://dummyjson.com/image/i/products/6/thumbnail.png",
+        "thumbnail": "https://dummyjson.com/image/i/products/2/thumbnail.jpg",
         "images": [
-          "https://dummyjson.com/image/i/products/6/1.png",
-          "https://dummyjson.com/image/i/products/6/2.jpg",
-          "https://dummyjson.com/image/i/products/6/3.png",
-          "https://dummyjson.com/image/i/products/6/4.jpg"
+          "https://dummyjson.com/image/i/products/2/1.jpg",
+          "https://dummyjson.com/image/i/products/2/2.jpg",
+          "https://dummyjson.com/image/i/products/2/3.jpg",
+          "https://dummyjson.com/image/i/products/2/thumbnail.jpg"
         ]
       },
       "quantity": "8",
@@ -220,17 +212,18 @@
     },
     {
       "product": {
-        "id": 10,
-        "title": "HP Pavilion 15-DK1056WM",
-        "description": "HP Pavilion 15-DK1056WM Gaming Laptop 10th Gen Core i5, 8GB, 256GB SSD, GTX 1650 4GB, Windows 10",
-        "price": 1220,
-        "brand": "HP Pavilion",
-        "thumbnail": "https://dummyjson.com/image/i/products/10/thumbnail.jpeg",
+        "id": 9,
+        "title": "Infinix INBOOK",
+        "description": "Infinix Inbook X1 Ci3 10th 8GB 256GB 14 Win10 Grey – 1 Year Warranty",
+        "price": 1099,
+        "brand": "Infinix",
+        "thumbnail": "https://dummyjson.com/image/i/products/9/thumbnail.jpg",
         "images": [
-          "https://dummyjson.com/image/i/products/10/1.jpg",
-          "https://dummyjson.com/image/i/products/10/2.jpg",
-          "https://dummyjson.com/image/i/products/10/3.jpg",
-          "https://dummyjson.com/image/i/products/10/thumbnail.jpeg"
+          "https://dummyjson.com/image/i/products/9/1.jpg",
+          "https://dummyjson.com/image/i/products/9/2.png",
+          "https://dummyjson.com/image/i/products/9/3.png",
+          "https://dummyjson.com/image/i/products/9/4.jpg",
+          "https://dummyjson.com/image/i/products/9/thumbnail.jpg"
         ]
       },
       "quantity": 4,
@@ -257,6 +250,23 @@
       "price": 1499,
       "edit": false,
       "id": 9
+    },
+    {
+      "product": {
+        "id": 3,
+        "title": "Samsung Universe 9",
+        "description": "Samsung's new variant which goes beyond Galaxy to the Universe",
+        "price": 1249,
+        "brand": "Samsung",
+        "thumbnail": "https://dummyjson.com/image/i/products/3/thumbnail.jpg",
+        "images": [
+          "https://dummyjson.com/image/i/products/3/1.jpg"
+        ]
+      },
+      "quantity": 7,
+      "price": 1249,
+      "edit": false,
+      "id": 10
     }
   ]
 }
