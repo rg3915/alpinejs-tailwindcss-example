@@ -2,19 +2,31 @@
   "todos": [
     {
       "id": 1,
-      "task": "One"
+      "task": "One",
+      "done": true
     },
     {
       "id": 2,
-      "task": "Two"
+      "task": "Two",
+      "done": true
     },
     {
       "task": "The quick brown fox",
-      "id": 6
+      "id": 6,
+      "done": true
     },
     {
       "task": "over the lazy dog",
       "id": 7
+    },
+    {
+      "task": "Windmill",
+      "id": 8
+    },
+    {
+      "task": "Lorem ipsum",
+      "id": 9,
+      "done": true
     }
   ],
   "products": [
