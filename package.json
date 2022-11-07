@@ -4,11 +4,11 @@
   "description": "Alpine.js TailwindCSS Example",
   "main": "index.js",
   "scripts": {
-    "build-css": "npx tailwindcss -i src/tailwind.css -o public/tailwind.css",
-    "build-css-watch": "npx tailwindcss -i src/tailwind.css -o public/tailwind.css --watch",
-    "build-js": "npx esbuild src/alpine.js --outfile=public/alpine.js --bundle",
-    "build-js-watch": "npx esbuild src/alpine.js --outfile=public/alpine.js --bundle --watch",
-    "build": "npx tailwindcss -i src/tailwind.css -o public/tailwind.css; npx esbuild src/alpine.js --outfile=public/alpine.js --bundle; npx prettier --write public/",
+    "build-css": "npx tailwindcss -i src/tailwind.css -o public/dist/tailwind.css",
+    "build-css-watch": "npx tailwindcss -i src/tailwind.css -o public/dist/tailwind.css --watch",
+    "build-js": "npx esbuild src/alpine.js --outfile=public/dist/alpine.js --bundle",
+    "build-js-watch": "npx esbuild src/alpine.js --outfile=public/dist/alpine.js --bundle --watch",
+    "build": "npx tailwindcss -i src/tailwind.css -o public/dist/tailwind.css; npx esbuild src/alpine.js --outfile=public/dist/alpine.js --bundle; npx prettier --write public/",
     "lint": "npx prettier --write public/"
   },
   "repository": {

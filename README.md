@@ -150,9 +150,9 @@ Edite `package.json`
 
 ```json
 "scripts": {
-  "build-css": "npx tailwindcss -i src/tailwind.css -o public/tailwind.css --watch",
-  "build-js": "npx esbuild src/alpine.js --outfile=public/alpine.js --bundle --watch",
-  "build": "npx tailwindcss -i src/tailwind.css -o public/tailwind.css; npx esbuild src/alpine.js --outfile=public/alpine.js --bundle; npx prettier --write public/",
+  "build-css": "npx tailwindcss -i src/tailwind.css -o public/dist/tailwind.css --watch",
+  "build-js": "npx esbuild src/alpine.js --outfile=public/dist/alpine.js --bundle --watch",
+  "build": "npx tailwindcss -i src/tailwind.css -o public/dist/tailwind.css; npx esbuild src/alpine.js --outfile=public/dist/alpine.js --bundle; npx prettier --write public/",
   "lint": "npx prettier --write public/"
 }
 ```
@@ -235,14 +235,26 @@ ou
 npm run lint
 ```
 
+### Windmill Dashboard
+
+https://github.com/estevanmaito/windmill-dashboard
+
+https://windmill-dashboard.vercel.app/
+
+https://api.github.com/repos/estevanmaito/windmill-dashboard/zipball/1.0.2
+
+https://tailwind-elements.com/
+
+https://apexcharts.com/javascript-chart-demos/
+
+
 ### Links
 
 https://github.com/alpine-collective/awesome
 
 https://github.com/thecodeholic/tailwindcss-ecommerce/blob/master/src/app.js
 
-
 https://youtu.be/TN0955TvodA
 
-
 https://codewithhugo.com/alpine-tips/
+
