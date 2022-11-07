@@ -173,7 +173,7 @@ module.exports = {
         xl: '36rem',
       },
       fontFamily: {
-        sans: ['Inter', ...defaultTheme.fontFamily.sans],
+        sans: ['Inter var', ...defaultTheme.fontFamily.sans],
         poppins: ['Poppins', 'sans-serif']
       },
     },

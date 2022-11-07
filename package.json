@@ -8,7 +8,7 @@
     "build-css-watch": "npx tailwindcss -i src/tailwind.css -o public/dist/tailwind.css --watch",
     "build-js": "npx esbuild src/alpine.js --outfile=public/dist/alpine.js --bundle",
     "build-js-watch": "npx esbuild src/alpine.js --outfile=public/dist/alpine.js --bundle --watch",
-    "build": "env NODE_ENV=production postcss public/assets/css/tailwind.css -o public/assets/css/tailwind.output.css",
+    "build": "npx tailwindcss -i src/tailwind.css -o public/dist/tailwind.css; npx esbuild src/alpine.js --outfile=public/dist/alpine.js --bundle; npx prettier --write public/",
     "lint": "npx prettier --write public/",
     "tailwind": "tailwindcss build public/assets/css/tailwind.css -o public/assets/css/tailwind.output.css",
     "cz": "git-cz",

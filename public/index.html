@@ -3,18 +3,32 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="assets/img/favicon.ico">
-    <title>Windmill Dashboard</title>
+    <link rel="shortcut icon" href="assets/img/favicon.ico" />
+    <title>Alpine.js and TailwindCSS | Windmill Dashboard</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./assets/css/tailwind.output.css" />
+    <!-- alpine.js 3 -->
     <script
-      src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
       defer
+      src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"
     ></script>
     <script src="./assets/js/init-alpine.js"></script>
+    <!-- Font-awesome -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <!-- main.js -->
+    <script src="./js/main.js"></script>
+    <!-- https://blog.logrocket.com/how-to-use-custom-fonts-tailwind-css/ -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css"
@@ -26,7 +40,7 @@
     <script src="./assets/js/charts-lines.js" defer></script>
     <script src="./assets/js/charts-pie.js" defer></script>
   </head>
-  <body>
+  <body class="font-poppins">
     <div
       class="flex h-screen bg-gray-50 dark:bg-gray-900"
       :class="{ 'overflow-hidden': isSideMenuOpen }"
@@ -1011,9 +1025,7 @@
                           </div>
                         </div>
                       </td>
-                      <td class="px-4 py-3 text-sm">
-                        $ 863.45
-                      </td>
+                      <td class="px-4 py-3 text-sm">$ 863.45</td>
                       <td class="px-4 py-3 text-xs">
                         <span
                           class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"
@@ -1021,9 +1033,7 @@
                           Approved
                         </span>
                       </td>
-                      <td class="px-4 py-3 text-sm">
-                        6/10/2020
-                      </td>
+                      <td class="px-4 py-3 text-sm">6/10/2020</td>
                     </tr>
 
                     <tr class="text-gray-700 dark:text-gray-400">
@@ -1052,9 +1062,7 @@
                           </div>
                         </div>
                       </td>
-                      <td class="px-4 py-3 text-sm">
-                        $ 369.95
-                      </td>
+                      <td class="px-4 py-3 text-sm">$ 369.95</td>
                       <td class="px-4 py-3 text-xs">
                         <span
                           class="px-2 py-1 font-semibold leading-tight text-orange-700 bg-orange-100 rounded-full dark:text-white dark:bg-orange-600"
@@ -1062,9 +1070,7 @@
                           Pending
                         </span>
                       </td>
-                      <td class="px-4 py-3 text-sm">
-                        6/10/2020
-                      </td>
+                      <td class="px-4 py-3 text-sm">6/10/2020</td>
                     </tr>
 
                     <tr class="text-gray-700 dark:text-gray-400">
@@ -1093,9 +1099,7 @@
                           </div>
                         </div>
                       </td>
-                      <td class="px-4 py-3 text-sm">
-                        $ 86.00
-                      </td>
+                      <td class="px-4 py-3 text-sm">$ 86.00</td>
                       <td class="px-4 py-3 text-xs">
                         <span
                           class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full dark:text-red-100 dark:bg-red-700"
@@ -1103,9 +1107,7 @@
                           Denied
                         </span>
                       </td>
-                      <td class="px-4 py-3 text-sm">
-                        6/10/2020
-                      </td>
+                      <td class="px-4 py-3 text-sm">6/10/2020</td>
                     </tr>
 
                     <tr class="text-gray-700 dark:text-gray-400">
@@ -1134,9 +1136,7 @@
                           </div>
                         </div>
                       </td>
-                      <td class="px-4 py-3 text-sm">
-                        $ 1276.45
-                      </td>
+                      <td class="px-4 py-3 text-sm">$ 1276.45</td>
                       <td class="px-4 py-3 text-xs">
                         <span
                           class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"
@@ -1144,9 +1144,7 @@
                           Approved
                         </span>
                       </td>
-                      <td class="px-4 py-3 text-sm">
-                        6/10/2020
-                      </td>
+                      <td class="px-4 py-3 text-sm">6/10/2020</td>
                     </tr>
 
                     <tr class="text-gray-700 dark:text-gray-400">
@@ -1175,9 +1173,7 @@
                           </div>
                         </div>
                       </td>
-                      <td class="px-4 py-3 text-sm">
-                        $ 863.45
-                      </td>
+                      <td class="px-4 py-3 text-sm">$ 863.45</td>
                       <td class="px-4 py-3 text-xs">
                         <span
                           class="px-2 py-1 font-semibold leading-tight text-gray-700 bg-gray-100 rounded-full dark:text-gray-100 dark:bg-gray-700"
@@ -1185,9 +1181,7 @@
                           Expired
                         </span>
                       </td>
-                      <td class="px-4 py-3 text-sm">
-                        6/10/2020
-                      </td>
+                      <td class="px-4 py-3 text-sm">6/10/2020</td>
                     </tr>
 
                     <tr class="text-gray-700 dark:text-gray-400">
@@ -1216,9 +1210,7 @@
                           </div>
                         </div>
                       </td>
-                      <td class="px-4 py-3 text-sm">
-                        $ 863.45
-                      </td>
+                      <td class="px-4 py-3 text-sm">$ 863.45</td>
                       <td class="px-4 py-3 text-xs">
                         <span
                           class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"
@@ -1226,9 +1218,7 @@
                           Approved
                         </span>
                       </td>
-                      <td class="px-4 py-3 text-sm">
-                        6/10/2020
-                      </td>
+                      <td class="px-4 py-3 text-sm">6/10/2020</td>
                     </tr>
 
                     <tr class="text-gray-700 dark:text-gray-400">
@@ -1257,9 +1247,7 @@
                           </div>
                         </div>
                       </td>
-                      <td class="px-4 py-3 text-sm">
-                        $ 863.45
-                      </td>
+                      <td class="px-4 py-3 text-sm">$ 863.45</td>
                       <td class="px-4 py-3 text-xs">
                         <span
                           class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"
@@ -1267,9 +1255,7 @@
                           Approved
                         </span>
                       </td>
-                      <td class="px-4 py-3 text-sm">
-                        6/10/2020
-                      </td>
+                      <td class="px-4 py-3 text-sm">6/10/2020</td>
                     </tr>
 
                     <tr class="text-gray-700 dark:text-gray-400">
@@ -1298,9 +1284,7 @@
                           </div>
                         </div>
                       </td>
-                      <td class="px-4 py-3 text-sm">
-                        $ 863.45
-                      </td>
+                      <td class="px-4 py-3 text-sm">$ 863.45</td>
                       <td class="px-4 py-3 text-xs">
                         <span
                           class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"
@@ -1308,9 +1292,7 @@
                           Approved
                         </span>
                       </td>
-                      <td class="px-4 py-3 text-sm">
-                        6/10/2020
-                      </td>
+                      <td class="px-4 py-3 text-sm">6/10/2020</td>
                     </tr>
 
                     <tr class="text-gray-700 dark:text-gray-400">
@@ -1339,9 +1321,7 @@
                           </div>
                         </div>
                       </td>
-                      <td class="px-4 py-3 text-sm">
-                        $ 863.45
-                      </td>
+                      <td class="px-4 py-3 text-sm">$ 863.45</td>
                       <td class="px-4 py-3 text-xs">
                         <span
                           class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"
@@ -1349,9 +1329,7 @@
                           Approved
                         </span>
                       </td>
-                      <td class="px-4 py-3 text-sm">
-                        6/10/2020
-                      </td>
+                      <td class="px-4 py-3 text-sm">6/10/2020</td>
                     </tr>
                   </tbody>
                 </table>

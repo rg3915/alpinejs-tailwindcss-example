@@ -255,6 +255,8 @@ https://tailwind-elements.com/
 
 https://apexcharts.com/javascript-chart-demos/
 
+https://www.uifaces.co/browse-avatars/
+
 ![](https://windmillui.com/img/Dashboard.png)
 
 
