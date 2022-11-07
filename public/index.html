@@ -10,6 +10,8 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./assets/css/tailwind.output.css" />
+    <!-- tailwind.css -->
+    <link rel="stylesheet" href="./dist/tailwind.css" />
     <!-- alpine.js 3 -->
     <script
       defer
@@ -21,7 +23,6 @@
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
     />
-
     <!-- main.js -->
     <script src="./js/main.js"></script>
     <!-- https://blog.logrocket.com/how-to-use-custom-fonts-tailwind-css/ -->
@@ -981,6 +982,259 @@
                 </div>
               </div>
             </div>
+
+            <!-- Produtos -->
+            <h2
+              class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
+            >
+              Produtos
+            </h2>
+
+            <!-- Products Table -->
+            <div
+              class="w-full overflow-hidden rounded-lg shadow-xs"
+              x-data="getSales"
+            >
+              <div class="w-full overflow-x-auto">
+                <table class="w-full whitespace-no-wrap">
+                  <thead>
+                    <tr
+                      class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 dark:text-gray-400 dark:bg-gray-800"
+                    >
+                      <th class="px-4 py-3">Produto</th>
+                      <th class="px-4 py-3 text-center">Quantidade</th>
+                      <th class="px-4 py-3 text-right">Preço Unitário</th>
+                      <th class="px-4 py-3 text-right">Preço Total</th>
+                      <th class="px-4 py-3 text-center">Ações</th>
+                    </tr>
+                  </thead>
+                  <tbody
+                    class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
+                    x-show="!editTable"
+                  >
+                    <template x-for="sale in sales" :key="sale.id">
+                      <!-- componente Somente Leitura -->
+                      <tr
+                        class="text-gray-700 dark:text-gray-400"
+                        x-data="getProductReadOnly"
+                      >
+                        <!-- product -->
+                        <td class="px-4 py-3">
+                          <div class="flex items-center text-sm">
+                            <!-- Avatar with inset shadow -->
+                            <div
+                              class="relative hidden w-8 h-8 mr-3 rounded-full md:block"
+                            >
+                              <img
+                                class="object-cover w-full h-full rounded-full"
+                                :src="sale.product.thumbnail"
+                                alt=""
+                                loading="lazy"
+                              />
+                              <div
+                                class="absolute inset-0 rounded-full shadow-inner"
+                                aria-hidden="true"
+                              ></div>
+                            </div>
+                            <div>
+                              <p
+                                class="font-semibold"
+                                x-text="sale.product.title"
+                              >
+                                Hans Burger
+                              </p>
+                              <p
+                                class="text-xs text-gray-600 dark:text-gray-400"
+                                x-text="sale.product.brand"
+                              >
+                                10x Developer
+                              </p>
+                            </div>
+                          </div>
+                        </td>
+                        <!-- quantity -->
+                        <td
+                          class="px-4 py-3 text-center"
+                          x-text="sale.quantity"
+                        >
+                          $ 863.45
+                        </td>
+                        <!-- price -->
+                        <td
+                          class="px-4 py-3 text-right"
+                          x-text="'$ '+sale.price"
+                        >
+                          <!-- <span
+                          class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"
+                        >
+                          Approved
+                        </span> -->
+                        </td>
+                        <!-- subtotal -->
+                        <!-- https://stackoverflow.com/a/70077233 -->
+                        <td
+                          class="px-4 py-3 text-right"
+                          x-effect="sale.subtotal = sale.quantity * sale.price; getTotal(sale)"
+                          x-text="'$ '+sale.subtotal"
+                        >
+                          6/10/2020
+                        </td>
+                        <!-- actions -->
+                        <td class="px-4 py-3 text-right text-center">
+                          <div class="flex items-center justify-center">
+                            <!-- Ver Detalhes -->
+                            <div
+                              class="w-4 mr-2 transform hover:cursor-pointer hover:text-purple-500 hover:scale-110"
+                            >
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                              >
+                                <path
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                                />
+                                <path
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                                />
+                              </svg>
+                            </div>
+                            <!-- Deletar -->
+                            <div
+                              class="w-4 mr-2 transform hover:cursor-pointer hover:text-purple-500 hover:scale-110"
+                              @click="deleteSale(sale.id)"
+                            >
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                              >
+                                <path
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                                />
+                              </svg>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </template>
+                  </tbody>
+                </table>
+              </div>
+              <div
+                class="grid px-4 py-3 text-xs font-semibold tracking-wide text-gray-500 uppercase border-t dark:border-gray-700 bg-gray-50 sm:grid-cols-9 dark:text-gray-400 dark:bg-gray-800"
+              >
+                <span class="flex items-center col-span-3">
+                  Showing 21-30 of 100
+                </span>
+                <span class="col-span-2"></span>
+                <!-- Pagination -->
+                <span class="flex col-span-4 mt-2 sm:mt-auto sm:justify-end">
+                  <nav aria-label="Table navigation">
+                    <ul class="inline-flex items-center">
+                      <li>
+                        <button
+                          class="px-3 py-1 rounded-md rounded-l-lg focus:outline-none focus:shadow-outline-purple"
+                          aria-label="Previous"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            class="w-4 h-4 fill-current"
+                            viewBox="0 0 20 20"
+                          >
+                            <path
+                              d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                              clip-rule="evenodd"
+                              fill-rule="evenodd"
+                            ></path>
+                          </svg>
+                        </button>
+                      </li>
+                      <li>
+                        <button
+                          class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple"
+                        >
+                          1
+                        </button>
+                      </li>
+                      <li>
+                        <button
+                          class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple"
+                        >
+                          2
+                        </button>
+                      </li>
+                      <li>
+                        <button
+                          class="px-3 py-1 text-white transition-colors duration-150 bg-purple-600 border border-r-0 border-purple-600 rounded-md focus:outline-none focus:shadow-outline-purple"
+                        >
+                          3
+                        </button>
+                      </li>
+                      <li>
+                        <button
+                          class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple"
+                        >
+                          4
+                        </button>
+                      </li>
+                      <li>
+                        <span class="px-3 py-1">...</span>
+                      </li>
+                      <li>
+                        <button
+                          class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple"
+                        >
+                          8
+                        </button>
+                      </li>
+                      <li>
+                        <button
+                          class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple"
+                        >
+                          9
+                        </button>
+                      </li>
+                      <li>
+                        <button
+                          class="px-3 py-1 rounded-md rounded-r-lg focus:outline-none focus:shadow-outline-purple"
+                          aria-label="Next"
+                        >
+                          <svg
+                            class="w-4 h-4 fill-current"
+                            aria-hidden="true"
+                            viewBox="0 0 20 20"
+                          >
+                            <path
+                              d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                              clip-rule="evenodd"
+                              fill-rule="evenodd"
+                            ></path>
+                          </svg>
+                        </button>
+                      </li>
+                    </ul>
+                  </nav>
+                </span>
+              </div>
+            </div>
+
+            <h2
+              class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
+            >
+              Clientes
+            </h2>
 
             <!-- New Table -->
             <div class="w-full overflow-hidden rounded-lg shadow-xs">

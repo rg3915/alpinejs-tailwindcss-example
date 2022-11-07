@@ -39,8 +39,6 @@ document.addEventListener("alpine:init", () => {
       fetch(this.url)
         .then((response) => response.json())
         .then((data) => (this.products = data));
-
-      console.log(this.products);
     },
   });
 
@@ -49,8 +47,6 @@ document.addEventListener("alpine:init", () => {
   const lorem = () => ({
     products: Alpine.store("getProducts").products,
   });
-
-  console.log([...lorem().products]);
 });
 
 const getTodos = () => ({
@@ -114,19 +110,15 @@ const getSales = () => ({
   produto: "",
   quantity: "",
   price: "",
-  editTable: true,
+  editTable: false,
   saveAuto: true,
   init() {
     fetch(this.url)
       .then((response) => response.json())
       .then((data) => (this.sales = data));
-
-    // console.log(Alpine.store('getProducts'))
   },
   getTotal(sale) {
     this.total += sale.quantity * sale.price;
-    // console.log('this.newProducts')
-    // console.log(this.newProducts)
   },
   async findProduct() {
     const url = `http://localhost:3000/products/${this.product}`;
