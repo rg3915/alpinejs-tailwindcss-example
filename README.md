@@ -118,6 +118,14 @@ module.exports = {
 }
 ```
 
+### Instalando Tailwind CSS Multi Theme
+
+https://github.com/estevanmaito/tailwindcss-multi-theme#tailwind-css-multi-theme
+
+```
+npm install tailwindcss-multi-theme
+```
+
 ### Instalando o [Alpine.js](https://alpinejs.dev/)
 
 ```

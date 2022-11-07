@@ -8,15 +8,18 @@
     "build-css-watch": "npx tailwindcss -i src/tailwind.css -o public/dist/tailwind.css --watch",
     "build-js": "npx esbuild src/alpine.js --outfile=public/dist/alpine.js --bundle",
     "build-js-watch": "npx esbuild src/alpine.js --outfile=public/dist/alpine.js --bundle --watch",
-    "build": "npx tailwindcss -i src/tailwind.css -o public/dist/tailwind.css; npx esbuild src/alpine.js --outfile=public/dist/alpine.js --bundle; npx prettier --write public/",
-    "lint": "npx prettier --write public/"
+    "build": "env NODE_ENV=production postcss public/assets/css/tailwind.css -o public/assets/css/tailwind.output.css",
+    "lint": "npx prettier --write public/",
+    "tailwind": "tailwindcss build public/assets/css/tailwind.css -o public/assets/css/tailwind.output.css",
+    "cz": "git-cz",
+    "release": "release-it"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rg3915/alpinejs-tailwindcss-example.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Regis Santos, Estevan Maito <ejmaito@gmail.com>",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/rg3915/alpinejs-tailwindcss-example/issues"
   },
@@ -33,6 +36,7 @@
   "dependencies": {
     "alpinejs": "^3.10.5",
     "esbuild": "^0.15.12",
+    "tailwindcss-multi-theme": "^1.0.4",
     "tw-elements": "^1.0.0-alpha12"
   }
 }
