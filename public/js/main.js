@@ -111,11 +111,13 @@ const getSales = () => ({
   url: "http://localhost:3000/sale_items",
   sales: [],
   total: 0,
-  product: "",
   // newProducts: Alpine.store('getProducts').products,
   produto: "",
-  quantity: "",
-  price: "",
+  form: {
+    product: "",
+    quantity: "",
+    price: "",
+  },
   editTable: false,
   saveAuto: true,
 
@@ -130,7 +132,7 @@ const getSales = () => ({
   },
 
   async findProduct() {
-    const url = `http://localhost:3000/products/${this.product}`;
+    const url = `http://localhost:3000/products/${this.form.product}`;
     await fetch(url)
       .then((response) => response.json())
       .then((data) => (this.produto = data));
@@ -146,8 +148,8 @@ const getSales = () => ({
   async getPrice() {
     // return price
     await this.findProduct();
-    this.price = this.produto.price;
-    this.quantity = Math.floor(Math.random() * 10);
+    this.form.price = this.produto.price;
+    this.form.quantity = Math.floor(Math.random() * 10);
   },
 
   focusInputProduct() {
@@ -155,29 +157,29 @@ const getSales = () => ({
   },
 
   saveData() {
-    if (!this.product) {
+    if (!this.form.product) {
       this.required = true;
       return;
     }
     this.findProduct();
-    this.product = this.produto;
+    this.form.product = this.produto;
     // Salva a venda.
     fetch(this.url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        product: this.product,
-        quantity: parseInt(this.quantity),
-        price: this.price,
+        product: this.form.product,
+        quantity: parseInt(this.form.quantity),
+        price: this.form.price,
         edit: false,
       }),
     })
       .then((response) => response.json())
       .then(() => {
         this.init();
-        this.product = "";
-        this.quantity = "";
-        this.price = "";
+        this.form.product = "";
+        this.form.quantity = "";
+        this.form.price = "";
         this.edit = false;
       });
   },

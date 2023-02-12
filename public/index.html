@@ -1008,7 +1008,7 @@
                         class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                         type="text"
                         @change="getPrice"
-                        x-model="product"
+                        x-model="form.product"
                         x-ref="product"
                       >
                         <option value="">-------</option>
@@ -1034,7 +1034,7 @@
                         type="number"
                         min="0"
                         placeholder="Quantidade"
-                        x-model="quantity"
+                        x-model="form.quantity"
                       />
                     </div>
                     <div class="w-full px-2 md:w-1/4">
@@ -1049,7 +1049,7 @@
                         min="0"
                         step="0.01"
                         placeholder="Preço"
-                        x-model="price"
+                        x-model="form.price"
                         @keyup.enter="focusInputProduct"
                       />
                     </div>
