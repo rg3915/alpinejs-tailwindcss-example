@@ -2,6 +2,7 @@ document.addEventListener("alpine:init", async () => {
   Alpine.store("getCategories", {
     url: "http://localhost:3000/categories",
     categories: [],
+
     getAllCategories() {
       fetch(this.url)
         .then((response) => response.json())
@@ -35,6 +36,7 @@ document.addEventListener("alpine:init", () => {
   Alpine.store("getProducts", {
     url: "http://localhost:3000/products",
     products: [],
+
     getAllProducts() {
       fetch(this.url)
         .then((response) => response.json())
@@ -54,11 +56,13 @@ const getTodos = () => ({
   todos: [],
   task: "",
   required: false,
+
   init() {
     fetch(this.url)
       .then((response) => response.json())
       .then((data) => (this.todos = data));
   },
+
   saveData() {
     if (!this.task) {
       this.required = true;
@@ -77,6 +81,7 @@ const getTodos = () => ({
         this.task = "";
       });
   },
+
   toggleDone(id, value) {
     fetch(`http://localhost:3000/todos/${id}`, {
       method: "PATCH",
@@ -90,6 +95,7 @@ const getTodos = () => ({
         this.init();
       });
   },
+
   deleteTask(id) {
     fetch(`http://localhost:3000/todos/${id}`, {
       method: "DELETE",
@@ -112,14 +118,17 @@ const getSales = () => ({
   price: "",
   editTable: false,
   saveAuto: true,
+
   init() {
     fetch(this.url)
       .then((response) => response.json())
       .then((data) => (this.sales = data));
   },
+
   getTotal(sale) {
     this.total += sale.quantity * sale.price;
   },
+
   async findProduct() {
     const url = `http://localhost:3000/products/${this.product}`;
     await fetch(url)
@@ -133,12 +142,18 @@ const getSales = () => ({
     //   }
     // });
   },
+
   async getPrice() {
     // return price
     await this.findProduct();
     this.price = this.produto.price;
     this.quantity = Math.floor(Math.random() * 10);
   },
+
+  focusInputProduct() {
+    this.$refs.product.focus()
+  },
+
   saveData() {
     if (!this.product) {
       this.required = true;
@@ -194,6 +209,7 @@ const getProductEdition = (sale) => ({
     //   }
     // });
   },
+
   // Modo Edição
   async editSale(item) {
     if (!this.saveAuto) {
@@ -223,6 +239,7 @@ const getProductEdition = (sale) => ({
         });
       });
   },
+
   deleteSale(id) {
     fetch(`http://localhost:3000/sale_items/${id}`, {
       method: "DELETE",
@@ -245,9 +262,11 @@ const getPersons = () => ({
 const customer = (person) => ({
   open: false,
   updated: false,
+
   toggle() {
     this.open = !this.open;
   },
+
   changeName() {
     this.updated = !this.updated;
     person.name = "Lorem";
