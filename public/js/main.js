@@ -118,7 +118,7 @@ const getSales = () => ({
     quantity: "",
     price: "",
   },
-  editTable: false,
+  editTable: true,
   saveAuto: true,
 
   init() {
