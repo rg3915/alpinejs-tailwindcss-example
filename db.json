@@ -24,9 +24,8 @@
       "id": 8
     },
     {
-      "task": "Lorem ipsum",
-      "id": 9,
-      "done": true
+      "task": "Estudar AlpineJS",
+      "id": 10
     }
   ],
   "products": [
