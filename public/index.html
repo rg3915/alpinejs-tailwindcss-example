@@ -1265,6 +1265,7 @@
                               <option
                                 :value="product.id"
                                 x-text="product.title"
+                                :selected="product.id === sale.product.id"
                               ></option>
                             </template>
                           </select>
