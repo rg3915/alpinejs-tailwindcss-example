@@ -153,7 +153,7 @@ const getSales = () => ({
   },
 
   focusInputProduct() {
-    this.$refs.product.focus()
+    this.$refs.product.focus();
   },
 
   saveData() {
