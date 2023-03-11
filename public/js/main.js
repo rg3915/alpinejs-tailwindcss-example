@@ -107,6 +107,17 @@ const getTodos = () => ({
   },
 });
 
+const getItems = () => ({
+  url: "http://localhost:3000/items",
+  items: [],
+
+  init() {
+    fetch(this.url)
+      .then((response) => response.json())
+      .then((data) => (this.items = data));
+  }
+});
+
 const getSales = () => ({
   url: "http://localhost:3000/sale_items",
   sales: [],

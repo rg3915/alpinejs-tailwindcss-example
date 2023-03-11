@@ -28,6 +28,28 @@
       "id": 10
     }
   ],
+  "items": [
+    {
+      "id": 1,
+      "title": "The quick brown fox",
+      "count": 0
+    },
+    {
+      "id": 2,
+      "title": "over the lazy dog",
+      "count": 0
+    },
+    {
+      "id": 3,
+      "title": "Windmill",
+      "count": 0
+    },
+    {
+      "id": 4,
+      "title": "AlpineJS",
+      "count": 0
+    }
+  ],
   "products": [
     {
       "id": 1,

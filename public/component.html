@@ -884,7 +884,7 @@
             </ul>
           </div>
         </header>
-        <main class="h-full pb-16 overflow-y-auto" x-data="getTodos">
+        <main class="h-full pb-16 overflow-y-auto" x-data="getItems">
           <div class="container grid px-6 mx-auto">
             <h2
               class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
@@ -892,42 +892,13 @@
               Componentes
             </h2>
 
-            <!-- Form -->
-            <form @submit.prevent="saveData">
-              <div class="flex items-start justify-start">
-                <div>
-                  <div>
-                    <input
-                      class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                      :class="required ? 'text-red-500 border-red-500' : ''"
-                      type="text"
-                      maxlength="20"
-                      placeholder="Tarefa"
-                      x-model="task"
-                      autofocus
-                    />
-                    <p class="text-red-500 text-xs" x-show="required">
-                      Por favor digite a tarefa.
-                    </p>
-                  </div>
-                  <p
-                    class="text-right"
-                    x-show="task.length"
-                    x-text="task.length"
-                  ></p>
-                </div>
-                <p class="inline-flex items-center ml-2">
-                  <button
-                    class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded"
-                    type="submit"
-                  >
-                    OK
-                  </button>
-                </p>
-              </div>
-            </form>
+            <pre>
+              x-data="getItems"
+                x-for="item in items" :key="item.id"
+                  x-data="{ object: item }"
+                    x-text="object.title"
+            </pre>
 
-            <!-- Todos -->
             <div class="w-1/2 my-8 overflow-hidden rounded-lg shadow-xs">
               <div class="w-full overflow-x-auto">
                 <table class="w-full whitespace-no-wrap">
@@ -937,7 +908,7 @@
                     >
                       <th
                         class="px-4 py-3"
-                        x-text="todos.length + ' Tarefas'"
+                        x-text="items.length + ' Itens'"
                       ></th>
                       <th class="px-4 py-3"></th>
                     </tr>
@@ -945,19 +916,26 @@
                   <tbody
                     class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
                   >
-                    <template x-for="todo in todos" :key="todo.id">
-                      <tr class="text-gray-700 dark:text-gray-400">
+                    <template x-for="item in items" :key="item.id">
+                      <tr class="text-gray-700 dark:text-gray-400" x-data="{ object: item }">
                         <td
                           class="px-4 py-3 text-sm"
-                          :class="todo.done ? 'line-through' : ''"
-                          x-text="todo.task"
-                          @click="toggleDone(todo.id, todo.done ? false : true)"
+                          x-text="object.title"
                         ></td>
                         <td class="px-4 py-3 text-sm">
-                          <i
-                            class="fa fa-times text-red-500 ml-3"
-                            @click="deleteTask(todo.id)"
-                          ></i>
+                          <button class="px-3 py-1 text-white transition-colors duration-150 bg-purple-600 border border-r-0 border-purple-600 rounded-md focus:outline-none focus:shadow-outline-purple"
+                          @click="object.count++"
+                          >
+                            +
+                          </button>
+                        </td>
+                        <td class="px-4 py-3 text-sm" x-text="object.count"></td>
+                        <td class="px-4 py-3 text-sm">
+                          <button class="px-3 py-1 text-white transition-colors duration-150 bg-purple-600 border border-r-0 border-purple-600 rounded-md focus:outline-none focus:shadow-outline-purple"
+                          @click="object.count--"
+                          >
+                            -
+                          </button>
                         </td>
                       </tr>
                     </template>
