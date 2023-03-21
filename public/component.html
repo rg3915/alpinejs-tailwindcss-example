@@ -924,17 +924,17 @@
                         ></td>
                         <td class="px-4 py-3 text-sm">
                           <button class="px-3 py-1 text-white transition-colors duration-150 bg-purple-600 border border-r-0 border-purple-600 rounded-md focus:outline-none focus:shadow-outline-purple"
-                          @click="object.count++"
+                          @click="object.count--"
                           >
-                            +
+                            -
                           </button>
                         </td>
                         <td class="px-4 py-3 text-sm" x-text="object.count"></td>
                         <td class="px-4 py-3 text-sm">
                           <button class="px-3 py-1 text-white transition-colors duration-150 bg-purple-600 border border-r-0 border-purple-600 rounded-md focus:outline-none focus:shadow-outline-purple"
-                          @click="object.count--"
+                          @click="object.count++"
                           >
-                            -
+                            +
                           </button>
                         </td>
                       </tr>
